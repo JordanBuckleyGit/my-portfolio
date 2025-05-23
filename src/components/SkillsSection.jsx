@@ -36,7 +36,7 @@ function SkillsSection() {
 
   return (
     <section className="w-full max-w-[2500px] mx-auto p-8 mb-8 flex flex-col items-center">
-      <h2 className="text-5xl font-bold text-blue-300 mb-6">Skills</h2>
+      <h2 className="text-5xl font-bold text-white mb-6">Skills</h2>
       <div className="flex items-center w-full justify-center space-x-6 mb-4">
         {/* Custom Arrow Button - Left */}
         <button
