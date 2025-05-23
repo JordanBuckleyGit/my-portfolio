@@ -3,6 +3,8 @@ import { FaTrophy } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import microsoft from "../assets/microsoft.png";
 import acmLogo from "../assets/acmLogo.png";
+import team from "../assets/team.jpeg";
+import acmTeam from "../assets/acmTeam.jpeg";
 
 function Modal({ open, onClose, imgSrc, imgAlt }) {
   if (!open) return null;
@@ -26,8 +28,8 @@ function AchievementsSection() {
   const [modal, setModal] = useState({ open: false, imgSrc: "", imgAlt: "" });
 
   return (
-    <section className="w-full max-w-[120rem] mx-auto p-10 mb-12 bg-gradient-to-br from-blue-900 via-gray-900 to-gray-800 rounded-2xl shadow-2xl">
-      <h2 className="text-4xl font-extrabold text-blue-200 mb-12 flex items-center gap-4 justify-center">
+    <section className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12">
+      <h2 className="text-4xl font-extrabold text-white mb-12 flex items-center gap-3 justify-center">
         <FaTrophy className="text-yellow-400" /> Achievements
       </h2>
       <Modal
@@ -36,18 +38,17 @@ function AchievementsSection() {
         imgSrc={modal.imgSrc}
         imgAlt={modal.imgAlt}
       />
-      <div className="flex items-end justify-center gap-8 w-full">
+      <div className="flex items-end justify-center gap-6 w-full flex-wrap">
         {/* 2nd Place - ACM Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-1 min-w-0">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
-            className="bg-blue-950/60 rounded-t-xl rounded-b-lg shadow-lg flex flex-col items-center px-8 py-12 md:px-10 md:py-16 w-full transition-transform duration-300 group-hover:scale-110 group-focus:scale-110 cursor-pointer"
-            style={{ minHeight: '320px', maxWidth: '340px' }}
+            className="bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
             tabIndex={0}
           >
             <img
               src={acmLogo}
               alt="ACM Hackathon"
-              className="w-16 h-16 mb-3 object-contain"
+              className="w-20 h-20 mb-3 object-contain"
             />
             <span className="text-3xl font-bold text-blue-200 mb-1">2</span>
             <h3 className="text-lg font-bold text-blue-100 mb-1 text-center">ACM Hackathon</h3>
@@ -55,7 +56,7 @@ function AchievementsSection() {
               Participated in the ACM Hackathon, collaborating and building creative solutions.
             </p>
             <button
-              onClick={() => setModal({ open: true, imgSrc: acmLogo, imgAlt: "ACM Hackathon" })}
+              onClick={() => setModal({ open: true, imgSrc: acmTeam, imgAlt: "ACM Hackathon" })}
               className="bg-blue-700 hover:bg-blue-500 text-white font-semibold py-2 px-6 rounded transition"
             >
               View
@@ -63,16 +64,15 @@ function AchievementsSection() {
           </div>
         </div>
         {/* 1st Place - Microsoft Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-1 min-w-0">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
-            className="bg-blue-950/80 rounded-t-xl rounded-b-lg shadow-2xl flex flex-col items-center px-10 py-16 md:px-14 md:py-24 border-4 border-yellow-400 relative z-10 w-full transition-transform duration-300 group-hover:scale-110 group-focus:scale-110 cursor-pointer"
-            style={{ minHeight: '420px', maxWidth: '360px', marginBottom: '-60px' }}
+            className="bg-blue-950/80 rounded-xl shadow-2xl flex flex-col items-center px-8 py-10 border-4 border-yellow-400 relative w-full h-[340px] cursor-pointer"
             tabIndex={0}
           >
             <img
               src={microsoft}
               alt="Microsoft Hackathon"
-              className="w-16 h-16 mb-3 object-contain"
+              className="w-20 h-20 mb-3 object-contain"
             />
             <span className="text-4xl font-extrabold text-yellow-400 mb-1 drop-shadow">1</span>
             <h3 className="text-xl font-bold text-blue-100 mb-1 text-center">Microsoft Hackathon</h3>
@@ -80,7 +80,7 @@ function AchievementsSection() {
               Placed at a Microsoft Hackathon for innovative project work and teamwork.
             </p>
             <button
-              onClick={() => setModal({ open: true, imgSrc: microsoft, imgAlt: "Microsoft Hackathon" })}
+              onClick={() => setModal({ open: true, imgSrc: team, imgAlt: "Microsoft Hackathon" })}
               className="bg-blue-700 hover:bg-blue-500 text-white font-semibold py-2 px-6 rounded transition"
             >
               View
@@ -89,10 +89,9 @@ function AchievementsSection() {
           </div>
         </div>
         {/* 3rd Place - LeetCode */}
-        <div className="flex flex-col items-center justify-end group flex-1 min-w-0">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
-            className="bg-blue-950/60 rounded-t-xl rounded-b-lg shadow-lg flex flex-col items-center px-8 py-12 md:px-10 md:py-16 w-full transition-transform duration-300 group-hover:scale-110 group-focus:scale-110 cursor-pointer"
-            style={{ minHeight: '320px', maxWidth: '340px' }}
+            className="bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
             tabIndex={0}
           >
             <SiLeetcode className="text-5xl text-yellow-300 mb-3" />
