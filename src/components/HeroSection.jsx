@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaPhoneAlt, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import "../index.css";
 import cv from "../assets/cv.pdf";
 
@@ -19,6 +19,9 @@ function HeroSection() {
           </a>
           <a href="https://www.linkedin.com/in/jordan05/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="text-4xl text-white hover:text-blue-400 transition" />
+          </a>
+          <a href="mailto:jordanbuckleycork@gmail.com" target="_blank" rel="noopener noreferrer">
+            <FaEnvelope className="text-4xl text-white hover:text-blue-400 transition" />
           </a>
         </div>
         <div className="flex space-x-4">
