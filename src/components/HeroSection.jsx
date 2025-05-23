@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "../index.css";
+import cv from "../assets/cv.pdf";
 
 function HeroSection() {
   return (
@@ -28,8 +29,10 @@ function HeroSection() {
             CONTACT ME
           </a>
           <a
-            href="/cv.pdf"
+            href={cv}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition transform hover:scale-105"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             SEE MY CV
           </a>

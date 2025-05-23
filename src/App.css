@@ -40,3 +40,113 @@
 .read-the-docs {
   color: #888;
 } */
+
+body {
+  overflow-x: hidden;
+}
+
+/* Example: Responsive padding for main container */
+@media (max-width: 640px) {
+  main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Example: Make images scale down on small screens */
+@media (max-width: 640px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Make images scale down on small screens */
+@media (max-width: 640px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.experience-responsive {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+/* On desktop, row layout */
+@media (min-width: 768px) {
+  .experience-responsive {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+/* SVG illustration container: always center on mobile/tablet, right on desktop */
+.education-svg-motion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0 0 0;
+  /* Prevent overflow */
+  overflow: hidden;
+}
+
+/* On desktop, SVG sits right of content, not centered */
+@media (min-width: 768px) {
+  .education-svg-motion {
+    width: auto;
+    margin: 0 0 0 2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+/* SVG illustration sizing: responsive */
+.education-svg-motion img {
+  width: 10rem;
+  height: 10rem;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Tablet: slightly larger SVG */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .education-svg-motion img {
+    width: 13rem;
+    height: 13rem;
+  }
+}
+
+/* Desktop: even larger SVG */
+@media (min-width: 1024px) {
+  .education-svg-motion img {
+    width: 20rem;
+    height: 20rem;
+  }
+}
