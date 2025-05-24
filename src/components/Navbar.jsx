@@ -20,7 +20,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="flex items-center space-x-3">
           <img
-            src="/favicon.ico"
+            src={`${import.meta.env.BASE_URL}favicon.ico`}
             alt="Logo"
             className="w-10 h-10 rounded-full object-cover shadow-md transition-transform duration-300 hover:scale-110"
           />
@@ -84,8 +84,8 @@ function Navbar() {
       {isMobile && (
         <div
           className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-transparent transition-all duration-500 ease-in-out ${open
-              ? "max-h-96 opacity-100 translate-y-0"
-              : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
+            ? "max-h-96 opacity-100 translate-y-0"
+            : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
             }`}
         >
           {[
