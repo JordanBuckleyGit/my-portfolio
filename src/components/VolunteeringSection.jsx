@@ -2,7 +2,7 @@ import { FaHandsHelping, FaCode, FaGlobe, FaNetworkWired, FaDatabase } from "rea
 
 function VolunteeringSection() {
   return (
-    <section className="w-full max-w-none mx-auto bg-gradient-to-br from-blue-900 via-gray-900 to-gray-800 rounded-2xl shadow-2xl p-10 mb-12 border border-blue-700">
+    <section className="w-full max-w-none mx-auto  p-10 mb-12 ">
       <h2 className="text-3xl font-extrabold text-white mb-12 flex items-center gap-3 justify-center">
         <FaHandsHelping className="text-yellow-400" /> Volunteering & Societies
       </h2>
