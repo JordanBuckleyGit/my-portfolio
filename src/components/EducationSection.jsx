@@ -18,12 +18,19 @@ function EducationSection() {
   return (
     <section
       id="education"
-      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-2 lg:gap-8"
+      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-8 lg:gap-16 px-4"
     >
+      {/* Inner div containing content and SVG, still flex-col on smaller screens */}
       <div className={`flex flex-col ${isMobile ? "" : "lg:flex-row"} w-full items-start lg:items-stretch relative`}>
-        {/* Education Content Block */}
+
+        {/* Education Content Block - Adjusted to allow wrapping/shrinking in 630-750px range */}
         <div
-          className="flex flex-col items-start w-full sm:max-w-xs md:max-w-[18rem] lg:max-w-3xl lg:flex-grow"
+          className="flex flex-col items-start w-full
+                     max-w-md
+                     sm:max-w-sm
+                     md:max-w-3xl 
+                     lg:max-w-xl
+                     lg:flex-grow"
         >
           <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
           <div className="space-y-12 sm:space-y-16 w-full">
@@ -35,6 +42,7 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
+                {/* REMOVED whitespace-nowrap to allow text to wrap */}
                 <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">University College Cork</h3>
                 <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
                   BSc Computer Science 1.1
@@ -59,6 +67,7 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
+                {/* REMOVED whitespace-nowrap to allow text to wrap */}
                 <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">North Monastery Secondary School</h3>
                 <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
                   Secondary School
@@ -75,15 +84,19 @@ function EducationSection() {
           </div>
         </div>
 
+        {/* SVG Container - No changes */}
         <motion.div
-          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8 lg:max-w-[22rem] lg:max-h-[22rem] flex-none overflow-hidden"
+          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8
+                     lg:w-1/3 xl:w-1/4 2xl:w-1/5
+                     max-w-[12rem] sm:max-w-[15rem] md:max-w-[18rem] lg:max-w-[20rem] xl:max-w-[22rem] 2xl:max-w-[24rem]
+                     flex-none flex-shrink-0"
           animate={{ rotate: [-10, 10, -10] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
           <img
             src={`${import.meta.env.BASE_URL}education.svg`}
             alt="Education Illustration"
-            className="w-full h-auto max-w-[20rem] max-h-[20rem] sm:max-w-[25rem] sm:max-h-[25rem] md:max-w-[30rem] md:max-h-[30rem] lg:max-w-[35rem] lg:max-h-[35rem] object-contain"
+            className="w-full h-auto object-contain"
           />
         </motion.div>
       </div>
