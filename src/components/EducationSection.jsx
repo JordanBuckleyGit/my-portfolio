@@ -20,15 +20,16 @@ function EducationSection() {
       id="education"
       className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-8 lg:gap-16 px-4"
     >
-      {/* Inner div containing content and SVG, still flex-col on smaller screens */}
-      <div className={`flex flex-col ${isMobile ? "" : "lg:flex-row"} w-full items-start lg:items-stretch relative`}>
+      {/* Inner div containing content and SVG.
+          Add items-center conditionally for mobile (when flex-col) */}
+      <div className={`flex flex-col ${isMobile ? "items-center" : "lg:flex-row items-start lg:items-stretch"} w-full relative`}>
 
-        {/* Education Content Block - Adjusted to allow wrapping/shrinking in 630-750px range */}
+        {/* Education Content Block */}
         <div
           className="flex flex-col items-start w-full
                      max-w-md
                      sm:max-w-sm
-                     md:max-w-3xl 
+                     md:max-w-3xl
                      lg:max-w-xl
                      lg:flex-grow"
         >
@@ -42,7 +43,6 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                {/* REMOVED whitespace-nowrap to allow text to wrap */}
                 <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">University College Cork</h3>
                 <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
                   BSc Computer Science 1.1
@@ -67,7 +67,6 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                {/* REMOVED whitespace-nowrap to allow text to wrap */}
                 <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">North Monastery Secondary School</h3>
                 <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
                   Secondary School
@@ -84,7 +83,7 @@ function EducationSection() {
           </div>
         </div>
 
-        {/* SVG Container - No changes */}
+        {/* SVG Container */}
         <motion.div
           className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8
                      lg:w-1/3 xl:w-1/4 2xl:w-1/5
