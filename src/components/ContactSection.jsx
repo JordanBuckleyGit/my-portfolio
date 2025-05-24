@@ -42,7 +42,7 @@ function ContactSection() {
       {/* Right: Animated Mail Illustration */}
       <div className="flex-1 flex justify-center mt-8 sm:mt-10 md:mt-0">
         <motion.img
-          src="/mail.svg"
+          src={`${import.meta.env.BASE_URL}mail.svg`}
           alt="Mail Illustration"
           className="w-32 h-32 sm:w-44 sm:h-44 md:w-72 md:h-72 object-contain"
           animate={{

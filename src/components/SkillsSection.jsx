@@ -25,14 +25,14 @@ const skills = [
 ];
 
 function getItemsPerPage(width) {
-  if (width < 640) return 1;      // mobile
-  if (width < 1024) return 3;     // tablet
-  return 5; // desktop
+  if (width < 640) return 1;
+  if (width < 1024) return 3;
+  return 5;
 }
 
 function SkillsSection() {
   const [page, setPage] = useState(0);
-  const [direction, setDirection] = useState(0); // -1 for left, 1 for right, 0 for none
+  const [direction, setDirection] = useState(0);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1200
   );
@@ -40,7 +40,7 @@ function SkillsSection() {
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
-      setPage(0); // Reset to first page on resize for best UX
+      setPage(0);
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

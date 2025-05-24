@@ -43,7 +43,7 @@ function HeroSection() {
       </div>
       <div className="flex-1 flex justify-center mt-10 md:mt-0">
         <img
-          src="/programmer.svg"
+          src={`${import.meta.env.BASE_URL}programmer.svg`}
           alt="Programmer"
           className="w-90 h-90 object-contain animate-bounce-illustration"
         />

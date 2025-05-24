@@ -85,7 +85,7 @@ function EducationSection() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <img
-            src="/education.svg"
+            src={`${import.meta.env.BASE_URL}education.svg`}
             alt="Education Illustration"
             className="w-[8rem] h-[8rem] max-w-full max-h-full sm:w-[10rem] sm:h-[10rem] md:w-[10rem] md:h-[10rem] lg:w-full lg:h-full object-contain"
           />
