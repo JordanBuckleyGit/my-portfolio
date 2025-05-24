@@ -12,17 +12,16 @@ const projectsData = [
   {
     name: "Hackathon",
     url: "https://github.com/JordanBuckleyGit/Hackathon",
-    desc: "A collaborative hackathon project focused on innovative solutions.",
-  },
+    desc: "A web application built for a hackathon that analyzes NGINX logs and provides actionable insights through data visualization.",  },
   {
-    name: "CA",
+    name: "Movie-Recommender",
     url: "https://github.com/JordanBuckleyGit/CA",
-    desc: "Coursework assignments and academic projects.",
+    desc: "I developed a backend website that uses algorithms and user profiling to suggest personalized movie recommendations.",
   },
   {
     name: "ACM-Server",
     url: "https://github.com/JordanBuckleyGit/ACM-Server",
-    desc: "Backend server for the ACM Student Chapter website.",
+    desc: "Developed a front-end website for the ACM Student Chapter.",
   },
   {
     name: "Java-Projects",
@@ -32,7 +31,7 @@ const projectsData = [
   {
     name: "Stock-Prediction-Model",
     url: "https://github.com/JordanBuckleyGit/Stock-Prediction-Model",
-    desc: "A machine learning model for predicting stock prices.",
+    desc: "A machine learning model for predicting stock prices.(still in development)",
   },
 ];
 
