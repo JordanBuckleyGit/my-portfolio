@@ -1,104 +1,120 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import uccLogo from '../assets/ucc.png';
+import northmonLogo from '../assets/northmon.png';
+import { motion } from "framer-motion";
+import '../App.css';
 
-const projects = [
-  {
-    title: "Portfolio Website",
-    desc: "A personal website built with React and Tailwind CSS.",
-  },
-  {
-    title: "Weather App",
-    desc: "A weather forecasting app using OpenWeatherMap API.",
-  },
-  {
-    title: "Chat Application",
-    desc: "A real-time chat app built with Socket.io and Node.js.",
-  },
-  {
-    title: "Task Manager",
-    desc: "A productivity tool for managing daily tasks.",
-  },
-  {
-    title: "Blog Platform",
-    desc: "A full-stack blog platform with authentication.",
-  },
-  {
-    title: "E-commerce Demo",
-    desc: "A demo online store with shopping cart and checkout.",
-  },
-];
+function ExperienceSection() {
+  const [isMobile, setIsMobile] = useState(false);
 
-function ProjectsSection() {
-  const [page, setPage] = useState(0);
-  const containerRef = useRef(null);
-  const [lastScroll, setLastScroll] = useState(Date.now());
-
-  // Listen for scroll down (next) and up (back) with a throttle
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const throttleMs = 500; // slower scroll
-    const onWheel = (e) => {
-      const now = Date.now();
-      if (now - lastScroll < throttleMs) return;
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        if (e.deltaY > 0 && page < projects.length - 1) {
-          setPage((prev) => Math.min(prev + 1, projects.length - 1));
-          setLastScroll(now);
-          e.preventDefault();
-        } else if (e.deltaY < 0 && page > 0) {
-          setPage((prev) => Math.max(prev - 1, 0));
-          setLastScroll(now);
-          e.preventDefault();
-        }
-      }
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [page, lastScroll]);
-
-  // Animate slide to new page
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const slideWidth = el.offsetWidth;
-    el.scrollTo({
-      left: page * slideWidth,
-      behavior: "smooth",
-    });
-  }, [page]);
-
-  return (
-    <section className="w-screen max-w-none py-12 mb-8 select-none bg-transparent">
-      <h2 className="text-3xl font-bold text-blue-300 mb-8 text-center">Projects</h2>
-      <div
-        ref={containerRef}
-        className="relative w-screen max-w-none overflow-hidden"
-        style={{ height: 240 }}
-        tabIndex={0}
-      >
-        <div
-          className="flex transition-transform duration-700 ease-in-out h-full"
-          style={{
-            width: `${projects.length * 100}%`,
-            transform: `translateX(-${page * 100}%)`,
-          }}
-        >
-          {projects.map((project, i) => (
-            <div
-              key={project.title}
-              className="flex w-full h-full items-center justify-center"
-              style={{ minWidth: "100%" }}
-            >
-              <div className="w-full bg-blue-950/70 rounded-xl shadow p-8 h-[200px] flex flex-col justify-center">
-                <h3 className="font-semibold text-2xl text-blue-100 mb-2">{project.title}</h3>
-                <p className="text-blue-300">{project.desc}</p>
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+    return (
+      <section className="w-full max-w-6xl px-4 sm:px-8 py-10 sm:py-16">
+      <div className="experience-responsive flex flex-col md:flex-row w-full items-start">
+        {/* ...education content... */}
+        <div className="flex flex-col items-start w-full md:max-w-4xl">
+          <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
+          <div className="space-y-12 sm:space-y-16 w-full">
+            {/* University College Cork */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
+              <img
+                src={uccLogo}
+                alt="University College Cork Logo"
+                className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
+              />
+              <div>
+                <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">University College Cork</h3>
+                <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
+                  BSc Computer Science 1.1
+                </p>
+                <p className="text-base sm:text-xl text-blue-300 mb-1">August 2024 - May 2028</p>
+                <p className="text-sm sm:text-lg text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-lg text-blue-100 mt-2 space-y-1">
+                  <li>Academic Class Representative 2024</li>
+                  <li>Netsoc member</li>
+                  <li>Datasoc member</li>
+                  <li>UCC ACM Student Chapter Webmaster</li>
+                </ul>
               </div>
             </div>
-          ))}
+            <hr className="border-gray-600 my-6 sm:my-8" />
+            {/* North Monastery Secondary School */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
+              <img
+                src={northmonLogo}
+                alt="North Monastery Secondary School Logo"
+                className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
+              />
+              <div>
+                <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">North Monastery Secondary School</h3>
+                <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
+                  Secondary School
+                </p>
+                <p className="text-base sm:text-xl text-blue-300 mb-1">September 2017 - May 2023</p>
+                <p className="text-sm sm:text-lg text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-lg text-blue-100 mt-2 space-y-1">
+                  <li>Representative Of Jigsaw Mental Health</li>
+                  <li>Student Council Member</li>
+                </ul>
+              </div>
+            </div>
+            <hr className="border-gray-600 my-6 sm:my-8" />
+          </div>
         </div>
+        {/* Animated SVG illustration */}
+        <motion.div
+          className="education-svg-motion"
+          initial={
+            isMobile
+              ? { x: 0, y: 0, opacity: 0, scale: 0.9 }
+              : { x: 180, y: 60, opacity: 0, scale: 0.9 }
+          }
+          animate={
+            isMobile
+              ? {
+                  x: 0,
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  rotate: [0, 2, -2, 2, 0],
+                }
+              : {
+                  x: 220,
+                  y: 120,
+                  opacity: 1,
+                  scale: 1,
+                  rotate: [0, 2, -2, 2, 0],
+                }
+          }
+          transition={{
+            duration: 1.2,
+            type: "spring",
+            delay: 0.3,
+            rotate: {
+              repeat: Infinity,
+              repeatType: "reverse",
+              duration: 3,
+              ease: "easeInOut",
+            },
+          }}
+          style={{ height: "100%" }}
+        >
+          <img
+            src="/education.svg"
+            alt="Education Illustration"
+            className="education-svg-img object-contain"
+          />
+        </motion.div>
       </div>
     </section>
   );
 }
 
-export default ProjectsSection;
+export default ExperienceSection;
