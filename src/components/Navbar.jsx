@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 function Navbar() {
-  const [open, setOpen] = useState(false); 
-  const [isMobile, setIsMobile] = useState(false); 
+  const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -14,8 +14,7 @@ function Navbar() {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty dependency array means this effect runs once on mount
-
+  }, []);
   return (
     <nav className="w-full left-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
@@ -27,6 +26,7 @@ function Navbar() {
           />
           <span
             className="font-extrabold text-2xl tracking-widest bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 hover:scale-105 cursor-pointer"
+            onClick={() => window.location.reload()}
           >
             Jordan Buckley
           </span>
@@ -40,19 +40,16 @@ function Navbar() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${
-                open ? "rotate-45 translate-y-2" : ""
-              }`}
+              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""
+                }`}
             ></span>
             <span
-              className={`block h-0.5 w-6 bg-white rounded my-1 transition-all duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
+              className={`block h-0.5 w-6 bg-white rounded my-1 transition-all duration-300 ${open ? "opacity-0" : ""
+                }`}
             ></span>
             <span
-              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${
-                open ? "-rotate-45 -translate-y-2" : ""
-              }`}
+              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""
+                }`}
             ></span>
           </button>
         )}
@@ -86,11 +83,10 @@ function Navbar() {
       {/* Mobile menu with slide-down animation - Conditionally rendered based on isMobile state */}
       {isMobile && (
         <div
-          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-transparent transition-all duration-500 ease-in-out ${
-            open
+          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-transparent transition-all duration-500 ease-in-out ${open
               ? "max-h-96 opacity-100 translate-y-0"
               : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
-          }`}
+            }`}
         >
           {[
             { href: "#skills", label: "Skills" },
