@@ -28,7 +28,7 @@ function AchievementsSection() {
   const [modal, setModal] = useState({ open: false, imgSrc: "", imgAlt: "" });
 
   return (
-    <section className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12">
+    <section id="achievements" className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12">
       <h2 className="text-4xl font-extrabold text-white mb-12 flex items-center gap-3 justify-center">
         <FaTrophy className="text-yellow-400" /> Achievements
       </h2>

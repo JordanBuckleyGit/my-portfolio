@@ -4,7 +4,7 @@ import { FaArrowUp } from "react-icons/fa";
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import SkillsSection from './components/SkillsSection';
-import ExperienceSection from './components/ExperienceSection';
+import EducationSection from './components/EducationSection';
 import AchievementsSection from './components/AchievementsSection';
 import VolunteeringSection from './components/VolunteeringSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -31,7 +31,6 @@ function App() {
     const handleScroll = () => {
       setShowTop(window.scrollY > 300);
 
-      // Show navbar when scrolling up, hide when scrolling down
       if (window.scrollY < 50) {
         setShowNavbar(true);
       } else if (window.scrollY > lastScrollY.current) {
@@ -93,7 +92,7 @@ function App() {
           viewport={{ once: true, amount: 0.2 }}
           className="self-start w-full"
         >
-          <ExperienceSection />
+          <EducationSection />
         </motion.div>
         <motion.div
           variants={sectionVariants}

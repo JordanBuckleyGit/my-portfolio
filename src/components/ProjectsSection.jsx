@@ -1,39 +1,44 @@
 import { useRef, useEffect, useState, useCallback } from "react";
+import { FaGithub } from "react-icons/fa";
+
+const projectsData = [
+  {
+    name: "my-portfolio",
+    url: "https://github.com/JordanBuckleyGit/my-portfolio",
+    desc: "My personal portfolio website built with React and Tailwind CSS.",
+  },
+  {
+    name: "Hackathon",
+    url: "https://github.com/JordanBuckleyGit/Hackathon",
+    desc: "A collaborative hackathon project focused on innovative solutions.",
+  },
+  {
+    name: "CA",
+    url: "https://github.com/JordanBuckleyGit/CA",
+    desc: "Coursework assignments and academic projects.",
+  },
+  {
+    name: "ACM-Server",
+    url: "https://github.com/JordanBuckleyGit/ACM-Server",
+    desc: "Backend server for the ACM Student Chapter website.",
+  },
+  {
+    name: "Java-Projects",
+    url: "https://github.com/JordanBuckleyGit/Java-Projects",
+    desc: "A collection of Java-based projects and experiments.",
+  },
+  {
+    name: "Stock-Prediction-Model",
+    url: "https://github.com/JordanBuckleyGit/Stock-Prediction-Model",
+    desc: "A machine learning model for predicting stock prices.",
+  },
+];
 
 function ProjectsSection() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const containerRef = useRef(null);
   const throttlingRef = useRef(false);
 
-useEffect(() => {
-  const allowed = [
-    "my-portfolio",
-    "Hackathon",
-    "CA",
-    "ACM-Server",
-    "Java-Projects",
-    "Stock-Prediction-Model",
-  ];
-
-  fetch("https://api.github.com/users/JordanBuckleyGit/repos")
-    .then(res => res.json())
-    .then(data => {
-      setProjects(
-        data
-          .filter(repo => allowed.includes(repo.name))
-          .map(repo => ({
-            title: repo.name,
-            desc: repo.description || "No description",
-            url: repo.html_url,
-          }))
-      );
-      setLoading(false);
-    });
-}, []);
-
-  // Function to handle scroll animation
   const scrollToPage = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -47,7 +52,6 @@ useEffect(() => {
     scrollToPage();
   }, [page, scrollToPage]);
 
-  // Listen for scroll down (next) and up (back) with a throttle
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -61,7 +65,7 @@ useEffect(() => {
       if (isVerticalScroll) {
         let newPage = page;
         if (e.deltaY > 0) {
-          newPage = Math.min(page + 1, projects.length - 1);
+          newPage = Math.min(page + 1, projectsData.length - 1);
         } else if (e.deltaY < 0) {
           newPage = Math.max(page - 1, 0);
         }
@@ -80,16 +84,15 @@ useEffect(() => {
     return () => {
       el.removeEventListener("wheel", onWheel);
     };
-  }, [page, projects.length]);
+  }, [page]);
 
-  // Handle keyboard navigation (optional, but good for accessibility)
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
     const handleKeyDown = (e) => {
       if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        setPage((prev) => Math.min(prev + 1, projects.length - 1));
+        setPage((prev) => Math.min(prev + 1, projectsData.length - 1));
       } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         setPage((prev) => Math.max(prev - 1, 0));
       }
@@ -97,47 +100,49 @@ useEffect(() => {
 
     el.addEventListener("keydown", handleKeyDown);
     return () => el.removeEventListener("keydown", handleKeyDown);
-  }, [projects.length]);
+  }, []);
 
   return (
-    <section className="w-full py-12 mb-8 select-none bg-transparent">
-      <h2 className="text-3xl font-bold text-blue-300 mb-8 text-center">Projects</h2>
-      {loading ? (
-        <div className="text-center text-blue-200">Loading projects...</div>
-      ) : (
-        <div
-          ref={containerRef}
-          className="relative w-full overflow-hidden"
-          style={{ height: 240 }}
-          tabIndex={0}
-        >
-          <div className="flex h-full">
-            {projects.map((project, i) => (
-              <div
-                key={project.title}
-                className="flex w-full h-full items-center justify-center flex-shrink-0"
-                style={{ minWidth: "100%" }}
+    <section id="projects" className="w-full py-16 mb-12 select-none ">
+      <h2 className="text-4xl font-extrabold text-white mb-12 text-center tracking-tight drop-shadow-lg">
+        <FaGithub className="inline-block mr-3 text-4xl align-middle text-white" />
+        Projects
+      </h2>
+      <div
+        ref={containerRef}
+        className="relative w-full overflow-hidden"
+        style={{ height: 280 }}
+        tabIndex={0}
+      >
+        <div className="flex h-full">
+          {projectsData.map((project, i) => (
+            <div
+              key={project.name}
+              className="flex w-full h-full items-center justify-center flex-shrink-0 px-2"
+              style={{ minWidth: "100%" }}
+            >
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-full max-w-3xl bg-gradient-to-br from-blue-900/90 to-blue-950/90 rounded-2xl shadow-2xl p-10 h-[220px] flex flex-col justify-center mx-auto border border-blue-800 hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
               >
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full max-w-2xl bg-blue-950/70 rounded-xl shadow p-8 h-[200px] flex flex-col justify-center mx-auto hover:bg-blue-900 transition"
-                >
-                  <h3 className="font-semibold text-2xl text-blue-100 mb-2">{project.title}</h3>
-                  <p className="text-blue-300">{project.desc}</p>
-                </a>
-              </div>
-            ))}
-          </div>
+                <div className="flex items-center mb-3">
+                  <FaGithub className="text-blue-400 text-2xl mr-2 group-hover:text-blue-300 transition" />
+                  <h3 className="font-bold text-2xl text-blue-100">{project.name}</h3>
+                </div>
+                <p className="text-blue-300 text-lg">{project.desc}</p>
+              </a>
+            </div>
+          ))}
         </div>
-      )}
-      <div className="flex justify-center mt-4 gap-2">
-        {projects.map((_, index) => (
+      </div>
+      <div className="flex justify-center mt-6 gap-2">
+        {projectsData.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${
-              page === index ? "bg-blue-300" : "bg-blue-600"
+            className={`w-3 h-3 rounded-full transition ${
+              page === index ? "bg-blue-300 scale-125" : "bg-blue-700"
             }`}
             onClick={() => setPage(index)}
             aria-label={`Go to project ${index + 1}`}

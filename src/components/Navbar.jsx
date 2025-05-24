@@ -6,7 +6,6 @@ function Navbar() {
   return (
     <nav className="w-full left-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        {/* Logo and Name */}
         <div className="flex items-center space-x-3">
           <img
             src="/favicon.ico"
@@ -42,7 +41,7 @@ function Navbar() {
         <div className="hidden md:flex space-x-8">
           {[
             { href: "#skills", label: "Skills" },
-            { href: "#experience", label: "Experience" },
+            { href: "#education", label: "Education" },
             { href: "#achievements", label: "Achievements" },
             { href: "#volunteering", label: "Volunteering" },
             { href: "#projects", label: "Projects" },

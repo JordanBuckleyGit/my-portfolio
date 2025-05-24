@@ -4,7 +4,7 @@ import northmonLogo from '../assets/northmon.png';
 import { motion } from "framer-motion";
 import '../App.css';
 
-function ExperienceSection() {
+function EducationSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -16,8 +16,8 @@ function ExperienceSection() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
     return (
-      <section className="w-full max-w-6xl px-4 sm:px-8 py-10 sm:py-16">
-      <div className="experience-responsive flex flex-col md:flex-row w-full items-start">
+      <section id="education" className="w-full max-w-6xl px-4 sm:px-8 py-10 sm:py-16">
+      <div className="education-responsive flex flex-col md:flex-row w-full items-start">
         {/* ...education content... */}
         <div className="flex flex-col items-start w-full md:max-w-4xl">
           <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
@@ -117,4 +117,4 @@ function ExperienceSection() {
   );
 }
 
-export default ExperienceSection;
+export default EducationSection;

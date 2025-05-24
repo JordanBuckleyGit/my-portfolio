@@ -53,7 +53,7 @@ function SkillsSection() {
   };
 
   return (
-    <section className="w-full max-w-[2500px] mx-auto p-4 sm:p-6 md:p-8 mb-8 flex flex-col items-center">
+    <section id="skills" className="w-full max-w-[2500px] mx-auto p-4 sm:p-6 md:p-8 mb-8 flex flex-col items-center">
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Skills</h2>
       <div className="flex items-center w-full justify-center space-x-2 sm:space-x-4 md:space-x-6 mb-4">
         {/* Custom Arrow Button - Left */}
