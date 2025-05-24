@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import '../index.css';
 import "../App.css";
@@ -12,7 +12,8 @@ const projectsData = [
   {
     name: "Hackathon",
     url: "https://github.com/JordanBuckleyGit/Hackathon",
-    desc: "A web application built for a hackathon that analyzes NGINX logs and provides actionable insights through data visualization.",  },
+    desc: "A web application built for a hackathon that analyzes NGINX logs and provides actionable insights through data visualization.",
+  },
   {
     name: "Movie-Recommender",
     url: "https://github.com/JordanBuckleyGit/CA",
@@ -41,33 +42,7 @@ function ProjectsSection() {
   const throttlingRef = useRef(false);
   const startTouchX = useRef(0);
 
-  const scrollToPage = useCallback(() => {
-    const el = containerRef.current;
-    if (!el) {
-      console.log("scrollToPage: containerRef is null.");
-      return;
-    }
-    const projectsWrapper = el.children[0];
-    if (!projectsWrapper) {
-      console.log("scrollToPage: projectsWrapper (flex container) not found.");
-      return;
-    }
-    const projectElement = projectsWrapper.children[page];
-    if (projectElement) {
-      console.log(`scrollToPage: Attempting to scroll to project ${page}.`);
-      projectElement.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center", // Changed to 'center' for potentially better visual on very wide screens
-      });
-    } else {
-      console.log(`scrollToPage: Project element for page ${page} not found.`);
-    }
-  }, [page]);
-
-  useEffect(() => {
-    scrollToPage();
-  }, [page, scrollToPage]);
+  // --- Remove scrollIntoView logic ---
 
   useEffect(() => {
     const el = containerRef.current;
@@ -168,7 +143,10 @@ function ProjectsSection() {
         className="relative w-full overflow-hidden h-72 sm:h-80 md:h-96"
         tabIndex={0}
       >
-        <div className="flex h-full">
+        <div
+          className="flex h-full transition-transform duration-500"
+          style={{ transform: `translateX(-${page * 100}%)` }}
+        >
           {projectsData.map((project, i) => (
             <div
               key={project.name}
@@ -179,7 +157,7 @@ function ProjectsSection() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full max-w-xs sm:max-w-md lg:max-w-xl xl:max-w-3xl 2xl:max-w-4xl /* Added 2xl breakpoint */
+                className="group w-full max-w-xs sm:max-w-md lg:max-w-xl xl:max-w-3xl 2xl:max-w-4xl
                            bg-gradient-to-br from-blue-900/90 to-blue-950/90 rounded-2xl shadow-2xl p-6 sm:p-10
                            min-h-[220px] flex flex-col justify-center mx-auto border border-blue-800
                            hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
