@@ -18,14 +18,12 @@ function EducationSection() {
   return (
     <section
       id="education"
-      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-2 lg:gap-8" // Drastically reduced gap
+      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-2 lg:gap-8"
     >
-      {/* Inner div containing content and SVG, still flex-col on smaller screens */}
       <div className={`flex flex-col ${isMobile ? "" : "lg:flex-row"} w-full items-start lg:items-stretch relative`}>
-
         {/* Education Content Block */}
         <div
-          className="flex flex-col items-start w-full sm:max-w-xs md:max-w-[18rem] lg:max-w-3xl lg:flex-grow" // AGGRESSIVE MAX-WIDTHS
+          className="flex flex-col items-start w-full sm:max-w-xs md:max-w-[18rem] lg:max-w-3xl lg:flex-grow"
         >
           <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
           <div className="space-y-12 sm:space-y-16 w-full">
@@ -77,17 +75,15 @@ function EducationSection() {
           </div>
         </div>
 
-        {/* Animated SVG illustration Container */}
         <motion.div
-          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8 lg:w-[20rem] lg:h-[20rem] flex-none overflow-hidden"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8 lg:max-w-[22rem] lg:max-h-[22rem] flex-none overflow-hidden"
+          animate={{ rotate: [-10, 10, -10] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
           <img
             src={`${import.meta.env.BASE_URL}education.svg`}
             alt="Education Illustration"
-            className="w-[8rem] h-[8rem] max-w-full max-h-full sm:w-[10rem] sm:h-[10rem] md:w-[10rem] md:h-[10rem] lg:w-full lg:h-full object-contain"
+            className="w-full h-auto max-w-[20rem] max-h-[20rem] sm:max-w-[25rem] sm:max-h-[25rem] md:max-w-[30rem] md:max-h-[30rem] lg:max-w-[35rem] lg:max-h-[35rem] object-contain"
           />
         </motion.div>
       </div>
