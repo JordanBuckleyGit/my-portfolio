@@ -109,48 +109,58 @@ body {
   }
 }
 
-/* SVG illustration container: always center on mobile/tablet, right on desktop */
-.education-svg-motion {
+.education-svg-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 2rem 0 0 0;
-  /* Prevent overflow */
+  margin-top: 2rem; /* mt-8 */
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
   overflow: hidden;
+  /* border: 2px dashed red; /* TEMP BORDER for container */
 }
 
-/* On desktop, SVG sits right of content, not centered */
-@media (min-width: 768px) {
-  .education-svg-motion {
-    width: auto;
-    margin: 0 0 0 2rem;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-}
-
-/* SVG illustration sizing: responsive */
-.education-svg-motion img {
-  width: 10rem;
-  height: 10rem;
+.education-svg-image {
+  width: 10rem; /* 160px */
+  height: 10rem; /* 160px */
   max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   display: block;
+  /* border: 2px dashed blue; /* TEMP BORDER for SVG */
 }
 
-/* Tablet: slightly larger SVG */
-@media (min-width: 641px) and (max-width: 1023px) {
-  .education-svg-motion img {
-    width: 13rem;
-    height: 13rem;
+/* Small screens (sm: >= 640px) */
+@media (min-width: 640px) {
+  .education-svg-image {
+    width: 12rem !important; /* 192px */
+    height: 12rem !important; /* 192px */
   }
 }
 
-/* Desktop: even larger SVG */
+/* Medium screens (md: >= 768px) - TARGETED FIX RANGE */
+@media (min-width: 768px) {
+  .education-svg-image {
+    /* Try a very small size here to ensure it *can* shrink */
+    width: 8rem !important; /* 128px - VERY SMALL */
+    height: 8rem !important; /* 128px - VERY SMALL */
+  }
+}
+
+/* Large screens (lg: >= 1024px) */
 @media (min-width: 1024px) {
-  .education-svg-motion img {
-    width: 20rem;
-    height: 20rem;
+  .education-svg-container {
+    flex-direction: row; /* Ensure it stays row on large screens */
+    margin-top: 0 !important;
+    margin-left: 2rem !important; /* ml-8 */
+    width: 20rem !important; /* 320px */
+    height: 20rem !important; /* 320px */
+  }
+
+  .education-svg-image {
+    width: 100% !important; /* Fills parent container */
+    height: 100% !important; /* Fills parent container */
   }
 }

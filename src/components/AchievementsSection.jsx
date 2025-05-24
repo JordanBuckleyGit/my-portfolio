@@ -38,9 +38,9 @@ function AchievementsSection() {
         imgSrc={modal.imgSrc}
         imgAlt={modal.imgAlt}
       />
-      <div className="flex items-end justify-center gap-6 w-full flex-wrap">
+      <div className="flex items-end justify-center gap-6 w-full flex-wrap flex-col sm:flex-row md:flex-col lg:flex-row md:gap-y-10">
         {/* 2nd Place - ACM Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
             className="bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
             tabIndex={0}
@@ -64,7 +64,7 @@ function AchievementsSection() {
           </div>
         </div>
         {/* 1st Place - Microsoft Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
             className="bg-blue-950/80 rounded-xl shadow-2xl flex flex-col items-center px-8 py-10 border-4 border-yellow-400 relative w-full h-[340px] cursor-pointer"
             tabIndex={0}
@@ -89,7 +89,7 @@ function AchievementsSection() {
           </div>
         </div>
         {/* 3rd Place - LeetCode */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/3 md:w-1/3 max-w-[420px] transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
           <div
             className="bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
             tabIndex={0}

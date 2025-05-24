@@ -1,5 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { FaGithub } from "react-icons/fa";
+import '../index.css';
+import "../App.css";
 
 const projectsData = [
   {
@@ -38,13 +40,29 @@ function ProjectsSection() {
   const [page, setPage] = useState(0);
   const containerRef = useRef(null);
   const throttlingRef = useRef(false);
+  const startTouchX = useRef(0);
 
   const scrollToPage = useCallback(() => {
     const el = containerRef.current;
-    if (!el) return;
-    const projectElement = el.children[0]?.children[page];
+    if (!el) {
+      console.log("scrollToPage: containerRef is null.");
+      return;
+    }
+    const projectsWrapper = el.children[0];
+    if (!projectsWrapper) {
+      console.log("scrollToPage: projectsWrapper (flex container) not found.");
+      return;
+    }
+    const projectElement = projectsWrapper.children[page];
     if (projectElement) {
-      projectElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      console.log(`scrollToPage: Attempting to scroll to project ${page}.`);
+      projectElement.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center", // Changed to 'center' for potentially better visual on very wide screens
+      });
+    } else {
+      console.log(`scrollToPage: Project element for page ${page} not found.`);
     }
   }, [page]);
 
@@ -57,18 +75,21 @@ function ProjectsSection() {
     if (!el) return;
 
     const throttleMs = 500;
+    const totalProjects = projectsData.length;
 
     const onWheel = (e) => {
       e.preventDefault();
       if (throttlingRef.current) return;
+
       const isVerticalScroll = Math.abs(e.deltaY) > Math.abs(e.deltaX);
       if (isVerticalScroll) {
         let newPage = page;
         if (e.deltaY > 0) {
-          newPage = Math.min(page + 1, projectsData.length - 1);
+          newPage = Math.min(page + 1, totalProjects - 1);
         } else if (e.deltaY < 0) {
           newPage = Math.max(page - 1, 0);
         }
+
         if (newPage !== page) {
           setPage(newPage);
           throttlingRef.current = true;
@@ -90,9 +111,44 @@ function ProjectsSection() {
     const el = containerRef.current;
     if (!el) return;
 
+    const totalProjects = projectsData.length;
+
+    const handleTouchStart = (e) => {
+      startTouchX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e) => {
+      const endTouchX = e.changedTouches[0].clientX;
+      const deltaX = endTouchX - startTouchX.current;
+      const swipeThreshold = 50;
+
+      if (Math.abs(deltaX) > swipeThreshold) {
+        if (deltaX < 0) {
+          setPage((prev) => Math.min(prev + 1, totalProjects - 1));
+        } else {
+          setPage((prev) => Math.max(prev - 1, 0));
+        }
+      }
+    };
+
+    el.addEventListener("touchstart", handleTouchStart, { passive: true });
+    el.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", handleTouchStart);
+      el.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const totalProjects = projectsData.length;
+
     const handleKeyDown = (e) => {
       if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        setPage((prev) => Math.min(prev + 1, projectsData.length - 1));
+        setPage((prev) => Math.min(prev + 1, totalProjects - 1));
       } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         setPage((prev) => Math.max(prev - 1, 0));
       }
@@ -103,15 +159,14 @@ function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" className="w-full py-16 mb-12 select-none ">
+    <section id="projects" className="w-full py-16 mb-12 select-none">
       <h2 className="text-4xl font-extrabold text-white mb-12 text-center tracking-tight drop-shadow-lg">
         <FaGithub className="inline-block mr-3 text-4xl align-middle text-white" />
         Projects
       </h2>
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden"
-        style={{ height: 280 }}
+        className="relative w-full overflow-hidden h-72 sm:h-80 md:h-96"
         tabIndex={0}
       >
         <div className="flex h-full">
@@ -125,7 +180,10 @@ function ProjectsSection() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full max-w-3xl bg-gradient-to-br from-blue-900/90 to-blue-950/90 rounded-2xl shadow-2xl p-10 h-[220px] flex flex-col justify-center mx-auto border border-blue-800 hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
+                className="group w-full max-w-xs sm:max-w-md lg:max-w-xl xl:max-w-3xl 2xl:max-w-4xl /* Added 2xl breakpoint */
+                           bg-gradient-to-br from-blue-900/90 to-blue-950/90 rounded-2xl shadow-2xl p-6 sm:p-10
+                           min-h-[220px] flex flex-col justify-center mx-auto border border-blue-800
+                           hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
               >
                 <div className="flex items-center mb-3">
                   <FaGithub className="text-blue-400 text-2xl mr-2 group-hover:text-blue-300 transition" />

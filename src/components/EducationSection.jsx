@@ -2,27 +2,34 @@ import { useEffect, useState } from "react";
 import uccLogo from '../assets/ucc.png';
 import northmonLogo from '../assets/northmon.png';
 import { motion } from "framer-motion";
-import '../App.css';
 
 function EducationSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     function handleResize() {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     }
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-    return (
-      <section id="education" className="w-full max-w-6xl px-4 sm:px-8 py-10 sm:py-16">
-      <div className="education-responsive flex flex-col md:flex-row w-full items-start">
-        {/* ...education content... */}
-        <div className="flex flex-col items-start w-full md:max-w-4xl">
+
+  return (
+    <section
+      id="education"
+      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-2 lg:gap-8" // Drastically reduced gap
+    >
+      {/* Inner div containing content and SVG, still flex-col on smaller screens */}
+      <div className={`flex flex-col ${isMobile ? "" : "lg:flex-row"} w-full items-start lg:items-stretch relative`}>
+
+        {/* Education Content Block */}
+        <div
+          className="flex flex-col items-start w-full sm:max-w-xs md:max-w-[18rem] lg:max-w-3xl lg:flex-grow" // AGGRESSIVE MAX-WIDTHS
+        >
           <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
           <div className="space-y-12 sm:space-y-16 w-full">
-            {/* University College Cork */}
+            {/* University College Cork Section */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
               <img
                 src={uccLogo}
@@ -45,7 +52,8 @@ function EducationSection() {
               </div>
             </div>
             <hr className="border-gray-600 my-6 sm:my-8" />
-            {/* North Monastery Secondary School */}
+
+            {/* North Monastery Secondary School Section */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
               <img
                 src={northmonLogo}
@@ -68,48 +76,18 @@ function EducationSection() {
             <hr className="border-gray-600 my-6 sm:my-8" />
           </div>
         </div>
-        {/* Animated SVG illustration */}
+
+        {/* Animated SVG illustration Container */}
         <motion.div
-          className="education-svg-motion"
-          initial={
-            isMobile
-              ? { x: 0, y: 0, opacity: 0, scale: 0.9 }
-              : { x: 180, y: 60, opacity: 0, scale: 0.9 }
-          }
-          animate={
-            isMobile
-              ? {
-                  x: 0,
-                  y: 0,
-                  opacity: 1,
-                  scale: 1,
-                  rotate: [0, 2, -2, 2, 0],
-                }
-              : {
-                  x: 220,
-                  y: 120,
-                  opacity: 1,
-                  scale: 1,
-                  rotate: [0, 2, -2, 2, 0],
-                }
-          }
-          transition={{
-            duration: 1.2,
-            type: "spring",
-            delay: 0.3,
-            rotate: {
-              repeat: Infinity,
-              repeatType: "reverse",
-              duration: 3,
-              ease: "easeInOut",
-            },
-          }}
-          style={{ height: "100%" }}
+          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8 lg:w-[20rem] lg:h-[20rem] flex-none overflow-hidden"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           <img
             src="/education.svg"
             alt="Education Illustration"
-            className="education-svg-img object-contain"
+            className="w-[8rem] h-[8rem] max-w-full max-h-full sm:w-[10rem] sm:h-[10rem] md:w-[10rem] md:h-[10rem] lg:w-full lg:h-full object-contain"
           />
         </motion.div>
       </div>
