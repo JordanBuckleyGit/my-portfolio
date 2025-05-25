@@ -20,8 +20,6 @@ function EducationSection() {
       id="education"
       className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-8 lg:gap-16 px-4"
     >
-      {/* Inner div containing content and SVG.
-          Add items-center conditionally for mobile (when flex-col) */}
       <div className={`flex flex-col ${isMobile ? "items-center" : "lg:flex-row items-start lg:items-stretch"} w-full relative`}>
 
         {/* Education Content Block */}
