@@ -4,6 +4,10 @@ import '../index.css';
 import "../App.css";
 
 const projectsData = [
+  {name: "Black-Scholes Option Pricing Model",
+   url: "https://github.com/JordanBuckleyGit/Black-Scholes",
+   desc: "Black-Scholes model for pricing European call and put options. It allows you to visualize option prices, payoffs, and key metrics, and to download a PDF report of your analysis."
+  },
   {
     name: "my-portfolio",
     url: "https://github.com/JordanBuckleyGit/my-portfolio",
