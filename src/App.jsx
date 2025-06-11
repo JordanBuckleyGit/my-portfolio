@@ -21,7 +21,6 @@ function App() {
   const [showTop, setShowTop] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
-  <div id="latest-check">Deployment Test 123</div>
   // Loader effect
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
