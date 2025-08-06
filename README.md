@@ -23,3 +23,8 @@ git clone https://github.com/JordanBuckleyGit/my-portfolio.git
 cd my-portfolio
 npm install
 npm start
+```
+
+## Author
+
+Created by me [Jordan Buckley](https://www.linkedin.com/in/jordan05/)
