@@ -9,9 +9,9 @@ const projectsData = [
    desc: "Black-Scholes model for pricing European call and put options. It allows you to visualize option prices, payoffs, and key metrics, and to download a PDF report of your analysis."
   },
   {
-    name: "my-portfolio",
-    url: "https://github.com/JordanBuckleyGit/my-portfolio",
-    desc: "My personal portfolio website built with React and Tailwind CSS.",
+    name: "2D Maze Runner Game",
+    url: "https://github.com/JordanBuckleyGit/ca2",
+    desc: "Created a JavaScript dungeon style game with elaborate algorithms.",
   },
   {
     name: "NGINX-Hackathon",
@@ -19,7 +19,7 @@ const projectsData = [
     desc: "A web application built for a hackathon that analyzes NGINX logs and provides actionable insights through data visualization.",
   },
   {
-    name: "Movie-Recommender",
+    name: "MovieDNA",
     url: "https://github.com/JordanBuckleyGit/CA",
     desc: "I developed a backend website that uses algorithms and user profiling to suggest personalized movie recommendations.",
   },
@@ -29,14 +29,14 @@ const projectsData = [
     desc: "Developed a front-end website for the ACM Student Chapter.",
   },
   {
+    name: "My-Portfolio",
+    url: "https://github.com/JordanBuckleyGit/my-portfolio",
+    desc: "My personal portfolio website built with React and Tailwind CSS.",
+  },
+  {
     name: "Java-Projects",
     url: "https://github.com/JordanBuckleyGit/Java-Projects",
     desc: "A collection of Java-based projects and experiments.",
-  },
-  {
-    name: "2D Maze Runner Game",
-    url: "https://github.com/JordanBuckleyGit/ca2",
-    desc: "Created a JavaScript dungeon style game with elaborate algorithms.",
   },
 ];
 
