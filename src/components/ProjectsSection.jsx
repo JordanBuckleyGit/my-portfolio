@@ -14,8 +14,8 @@ const projectsData = [
     desc: "My personal portfolio website built with React and Tailwind CSS.",
   },
   {
-    name: "Hackathon",
-    url: "https://github.com/JordanBuckleyGit/Hackathon",
+    name: "NGINX-Hackathon",
+    url: "https://github.com/JordanBuckleyGit/NGINX-Hackathon",
     desc: "A web application built for a hackathon that analyzes NGINX logs and provides actionable insights through data visualization.",
   },
   {
@@ -34,9 +34,9 @@ const projectsData = [
     desc: "A collection of Java-based projects and experiments.",
   },
   {
-    name: "Stock-Prediction-Model",
-    url: "https://github.com/JordanBuckleyGit/Stock-Prediction-Model",
-    desc: "A machine learning model for predicting stock prices.(still in development)",
+    name: "2D Maze Runner Game",
+    url: "https://github.com/JordanBuckleyGit/ca2",
+    desc: "Created a JavaScript dungeon style game with elaborate algorithms.",
   },
 ];
 
