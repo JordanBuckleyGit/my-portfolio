@@ -46,7 +46,6 @@ function ProjectsSection() {
   const throttlingRef = useRef(false);
   const startTouchX = useRef(0);
 
-  // --- Remove scrollIntoView logic ---
 
   useEffect(() => {
     const el = containerRef.current;

@@ -96,17 +96,18 @@ function Navbar() {
             { href: "#projects", label: "Projects" },
             { href: "#contact", label: "Contact Me" },
           ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="relative text-white font-medium transition-colors duration-200 px-2 py-1
-                before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-400 before:transition-all before:duration-300
-                hover:text-blue-400 hover:before:w-full"
-              style={{ overflow: "hidden" }}
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </a>
+          <a
+            key={item.href}
+            href={item.href}
+            className="relative text-white font-medium transition-colors duration-200 px-4 py-3 rounded-lg
+              before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-400 before:transition-all before:duration-300
+              hover:text-blue-400 hover:before:w-full
+              bg-gray-800 bg-opacity-60 hover:bg-opacity-80 backdrop-blur-sm"
+            style={{ overflow: "hidden" }}
+            onClick={() => setOpen(false)}
+          >
+            {item.label}
+          </a>
           ))}
         </div>
       )}
