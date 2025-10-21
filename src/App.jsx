@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import SkillsSection from './components/SkillsSection';
 import EducationSection from './components/EducationSection';
+import ExperiencesSection from './components/ExperiencesSection';
 import AchievementsSection from './components/AchievementsSection';
 import VolunteeringSection from './components/VolunteeringSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -129,6 +130,15 @@ function App() {
            className="self-start w-full"
          >
            <EducationSection />
+         </motion.div>
+         <motion.div
+           variants={sectionVariants}
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true, amount: 0.2 }}
+           className="self-start w-full"
+         >
+           <ExperiencesSection />
          </motion.div>
          <motion.div
            variants={sectionVariants}
