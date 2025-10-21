@@ -13,7 +13,7 @@ function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 825);
+      setIsMobile(window.innerWidth < 1024);
     };
 
     handleResize();
@@ -33,7 +33,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`w-full left-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 w-full left-0 z-50 transition-all duration-300 ${
       scrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
@@ -54,7 +54,7 @@ function Navbar() {
         <div className="flex items-center space-x-8">
           {/* Desktop links - Conditionally rendered based on isMobile state */}
           {!isMobile && (
-            <div className="flex space-x-8">
+            <div className="flex space-x-4 lg:space-x-6 xl:space-x-8">
               {[
                 { href: "#skills", label: "Skills" },
                 { href: "#education", label: "Education" },
@@ -67,7 +67,7 @@ function Navbar() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="relative text-gray-800 dark:text-white font-medium transition-colors duration-200 px-2 py-1
+                  className="relative text-gray-800 dark:text-white text-sm lg:text-base font-medium transition-colors duration-200 px-1 lg:px-2 py-1
                     before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-600 dark:before:bg-blue-400 before:transition-all before:duration-300
                     hover:text-blue-600 dark:hover:text-blue-400 hover:before:w-full"
                   style={{ overflow: "hidden" }}
@@ -139,7 +139,6 @@ function Navbar() {
           {[
             { href: "#skills", label: "Skills" },
             { href: "#education", label: "Education" },
-            { href: "#experiences", label: "Experiences" },
             { href: "#achievements", label: "Achievements" },
             { href: "#volunteering", label: "Volunteering" },
             { href: "#projects", label: "Projects" },
