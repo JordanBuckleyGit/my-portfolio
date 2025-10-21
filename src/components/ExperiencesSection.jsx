@@ -19,7 +19,7 @@ function ExperiencesSection() {
         "Automated deployments via CI/CD, cutting update time by 70%."
       ],
       link: "https://jordanbuckleygit.github.io/ACM-Server/",
-      tech: ["Html","JavaScript",""]
+      tech: ["Html","JavaScript","CSS"]
     },
     {
       company: "Google, Dublin",
