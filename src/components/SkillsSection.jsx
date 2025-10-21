@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import '../App.css';
 
 const skills = [
@@ -63,7 +64,14 @@ function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="w-full max-w-[2500px] mx-auto p-4 sm:p-6 md:p-8 mb-8 flex flex-col items-center">
+    <motion.section
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+      id="skills"
+      className="w-full max-w-[2500px] mx-auto p-4 sm:p-6 md:p-8 mb-8 flex flex-col items-center"
+    >
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">Skills</h2>
       <div className="flex items-center w-full justify-center space-x-2 sm:space-x-4 md:space-x-6 mb-4">
         {/* Custom Arrow Button - Left */}
@@ -138,7 +146,7 @@ function SkillsSection() {
           }
         `}
       </style>
-    </section>
+    </motion.section>
   );
 }
 

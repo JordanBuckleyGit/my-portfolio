@@ -16,7 +16,11 @@ function EducationSection() {
   }, []);
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
       id="education"
       className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-8 lg:gap-16 px-4"
     >
@@ -97,7 +101,7 @@ function EducationSection() {
           />
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

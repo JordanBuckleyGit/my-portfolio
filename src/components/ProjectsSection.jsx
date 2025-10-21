@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import '../index.css';
 import "../App.css";
@@ -136,7 +137,14 @@ function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" className="w-full py-16 mb-12 select-none">
+    <motion.section
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+      id="projects"
+      className="w-full py-16 mb-12 select-none"
+    >
       <h2 className="text-4xl font-extrabold text-white mb-12 text-center tracking-tight drop-shadow-lg">
         <FaGithub className="inline-block mr-3 text-4xl align-middle text-white" />
         Projects
@@ -187,7 +195,7 @@ function ProjectsSection() {
           ></button>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

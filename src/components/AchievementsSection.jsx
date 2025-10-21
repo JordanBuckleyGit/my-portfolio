@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import microsoft from "../assets/microsoft.png";
@@ -28,7 +29,14 @@ function AchievementsSection() {
   const [modal, setModal] = useState({ open: false, imgSrc: "", imgAlt: "" });
 
   return (
-    <section id="achievements" className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12">
+    <motion.section
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
+      id="achievements"
+      className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12"
+    >
       <h2 className="text-4xl font-extrabold text-white mb-12 flex items-center gap-3 justify-center">
         <FaTrophy className="text-yellow-400" /> Achievements
       </h2>
@@ -115,7 +123,7 @@ function AchievementsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

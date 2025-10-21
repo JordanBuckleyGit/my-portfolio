@@ -3,7 +3,11 @@ import { motion } from "framer-motion";
 
 function ContactSection() {
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
       id="contact"
       className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between p-4 sm:p-8 md:p-10 mb-8 mt-8"
     >
@@ -57,7 +61,7 @@ function ContactSection() {
           }}
         />
       </div>
-    </section>
+    </motion.section>
   );
 }
 

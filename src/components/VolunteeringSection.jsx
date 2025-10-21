@@ -1,9 +1,14 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import { FaHandsHelping, FaCode, FaGlobe, FaNetworkWired, FaDatabase } from "react-icons/fa";
 
 function VolunteeringSection() {
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.3 }}
       id="volunteering"
       className="w-full max-w-screen-xl mx-auto p-4 sm:p-8 md:p-10 mb-12"
     >
@@ -43,7 +48,7 @@ function VolunteeringSection() {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 
