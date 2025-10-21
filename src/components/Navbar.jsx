@@ -51,21 +51,54 @@ function Navbar() {
           </span>
         </div>
 
-        <div className="flex items-center space-x-4">
-          {/* Theme Toggle Button */}
+        <div className="flex items-center space-x-8">
+          {/* Desktop links - Conditionally rendered based on isMobile state */}
+          {!isMobile && (
+            <div className="flex space-x-8">
+              {[
+                { href: "#skills", label: "Skills" },
+                { href: "#education", label: "Education" },
+                { href: "#achievements", label: "Achievements" },
+                { href: "#volunteering", label: "Volunteering" },
+                { href: "#projects", label: "Projects" },
+                { href: "#contact", label: "Contact Me" },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="relative text-gray-800 dark:text-white font-medium transition-colors duration-200 px-2 py-1
+                    before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-600 dark:before:bg-blue-400 before:transition-all before:duration-300
+                    hover:text-blue-600 dark:hover:text-blue-400 hover:before:w-full"
+                  style={{ overflow: "hidden" }}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
+
+          {/* Theme Toggle Button - Switch Style - Always at the far right */}
           <button
             onClick={() => {
               console.log('Theme button clicked!');
               toggleTheme();
             }}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 border-2 border-gray-400 dark:border-gray-500"
+            className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              isDark ? 'bg-gray-600' : 'bg-blue-400'
+            }`}
             aria-label="Toggle theme"
           >
-            {isDark ? (
-              <FaSun className="text-yellow-400 text-xl" />
-            ) : (
-              <FaMoon className="text-blue-600 text-xl" />
-            )}
+            <div
+              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-300 flex items-center justify-center ${
+                isDark ? 'translate-x-7' : 'translate-x-0'
+              }`}
+            >
+              {isDark ? (
+                <FaMoon className="text-gray-700 text-sm" />
+              ) : (
+                <FaSun className="text-yellow-500 text-sm" />
+              )}
+            </div>
           </button>
 
           {/* Hamburger for mobile - Conditionally rendered based on isMobile state */}
@@ -90,31 +123,6 @@ function Navbar() {
             </button>
           )}
         </div>
-
-        {/* Desktop links - Conditionally rendered based on isMobile state */}
-        {!isMobile && (
-          <div className="flex space-x-8">
-            {[
-              { href: "#skills", label: "Skills" },
-              { href: "#education", label: "Education" },
-              { href: "#achievements", label: "Achievements" },
-              { href: "#volunteering", label: "Volunteering" },
-              { href: "#projects", label: "Projects" },
-              { href: "#contact", label: "Contact Me" },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="relative text-gray-800 dark:text-white font-medium transition-colors duration-200 px-2 py-1
-                  before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-600 dark:before:bg-blue-400 before:transition-all before:duration-300
-                  hover:text-blue-600 dark:hover:text-blue-400 hover:before:w-full"
-                style={{ overflow: "hidden" }}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        )}
       </div>
 
       {/* Mobile menu with slide-down animation - Conditionally rendered based on isMobile state */}
