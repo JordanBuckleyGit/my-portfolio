@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaTrophy } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
 import microsoft from "../assets/microsoft.png";
 import acmLogo from "../assets/acmLogo.png";
 import team from "../assets/team.jpeg";
