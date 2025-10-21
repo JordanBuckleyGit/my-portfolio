@@ -88,7 +88,10 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 via-gray-900 to-gray-800"
+      className="min-h-screen flex flex-col 
+                 bg-gradient-to-b from-sky-100 via-blue-50 to-slate-100
+                 dark:from-blue-900 dark:via-gray-900 dark:to-gray-800
+                 transition-colors duration-500"
     >
        <div
          style={{
@@ -166,7 +169,7 @@ function App() {
     {showTop && (
       <button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 bg-blue-700 hover:bg-blue-500 text-white p-3 rounded-full shadow-lg transition-all duration-200"
+        className="fixed bottom-6 right-6 z-50 bg-blue-700 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-400 text-white p-3 rounded-full shadow-lg transition-all duration-200"
         aria-label="Back to top"
       >
         <FaArrowUp className="text-2xl" />

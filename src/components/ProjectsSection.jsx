@@ -145,8 +145,8 @@ function ProjectsSection() {
       id="projects"
       className="w-full py-16 mb-12 select-none"
     >
-      <h2 className="text-4xl font-extrabold text-white mb-12 text-center tracking-tight drop-shadow-lg">
-        <FaGithub className="inline-block mr-3 text-4xl align-middle text-white" />
+      <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-12 text-center tracking-tight drop-shadow-lg">
+        <FaGithub className="inline-block mr-3 text-4xl align-middle text-gray-900 dark:text-white" />
         Projects
       </h2>
       <div
@@ -169,15 +169,16 @@ function ProjectsSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-full max-w-xs sm:max-w-md lg:max-w-xl xl:max-w-3xl 2xl:max-w-4xl
-                           bg-gradient-to-br from-blue-900/90 to-blue-950/90 rounded-2xl shadow-2xl p-6 sm:p-10
-                           min-h-[220px] flex flex-col justify-center mx-auto border border-blue-800
-                           hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
+                           bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/90 dark:to-blue-950/90 
+                           rounded-2xl shadow-2xl p-6 sm:p-10
+                           min-h-[220px] flex flex-col justify-center mx-auto border border-blue-300 dark:border-blue-800
+                           hover:border-blue-500 dark:hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
               >
                 <div className="flex items-center mb-3">
-                  <FaGithub className="text-blue-400 text-2xl mr-2 group-hover:text-blue-300 transition" />
-                  <h3 className="font-bold text-2xl text-blue-100">{project.name}</h3>
+                  <FaGithub className="text-blue-600 dark:text-blue-400 text-2xl mr-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition" />
+                  <h3 className="font-bold text-2xl text-gray-900 dark:text-blue-100">{project.name}</h3>
                 </div>
-                <p className="text-blue-300 text-lg">{project.desc}</p>
+                <p className="text-gray-800 dark:text-blue-300 text-lg">{project.desc}</p>
               </a>
             </div>
           ))}

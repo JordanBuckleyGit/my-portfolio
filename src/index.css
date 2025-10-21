@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Light mode is default */
+  :root:not(.dark) {
+    background: linear-gradient(to bottom, #e0f2fe, #dbeafe, #f1f5f9);
+  }
+  
+  :root:not(.dark) body {
+    background: linear-gradient(to bottom, #e0f2fe, #dbeafe, #f1f5f9);
+  }
+  
+  /* Dark mode */
+  :root.dark {
+    background: linear-gradient(to bottom, #1e3a8a, #111827, #1f2937);
+  }
+  
+  :root.dark body {
+    background: linear-gradient(to bottom, #1e3a8a, #111827, #1f2937);
+  }
+}
+
 @keyframes wave-hand {
   0% { transform: rotate(0deg); }
   10% { transform: rotate(14deg); }

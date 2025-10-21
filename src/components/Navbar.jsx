@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
+import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
+
+  // Log theme state on every render
+  console.log('Navbar render - isDark:', isDark);
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,7 +22,7 @@ function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
-    <nav className="w-full left-0 z-50 transition-all duration-300">
+    <nav className="w-full left-0 z-50 transition-all duration-300 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="flex items-center space-x-3">
           <img
@@ -25,34 +31,52 @@ function Navbar() {
             className="w-10 h-10 rounded-full object-cover shadow-md transition-transform duration-300 hover:scale-110"
           />
           <span
-            className="font-extrabold text-2xl tracking-widest bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent transition-all duration-300 hover:scale-105 cursor-pointer"
+            className="font-extrabold text-2xl tracking-widest bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent transition-all duration-300 hover:scale-105 cursor-pointer"
             onClick={() => window.location.reload()}
           >
             Jordan Buckley
           </span>
         </div>
 
-        {/* Hamburger for mobile - Conditionally rendered based on isMobile state */}
-        {isMobile && (
+        <div className="flex items-center space-x-4">
+          {/* Theme Toggle Button */}
           <button
-            className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            onClick={() => {
+              console.log('Theme button clicked!');
+              toggleTheme();
+            }}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 border-2 border-gray-400 dark:border-gray-500"
+            aria-label="Toggle theme"
           >
-            <span
-              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""
-                }`}
-            ></span>
-            <span
-              className={`block h-0.5 w-6 bg-white rounded my-1 transition-all duration-300 ${open ? "opacity-0" : ""
-                }`}
-            ></span>
-            <span
-              className={`block h-0.5 w-6 bg-white rounded transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""
-                }`}
-            ></span>
+            {isDark ? (
+              <FaSun className="text-yellow-400 text-xl" />
+            ) : (
+              <FaMoon className="text-blue-600 text-xl" />
+            )}
           </button>
-        )}
+
+          {/* Hamburger for mobile - Conditionally rendered based on isMobile state */}
+          {isMobile && (
+            <button
+              className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+            >
+              <span
+                className={`block h-0.5 w-6 bg-gray-800 dark:bg-white rounded transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""
+                  }`}
+              ></span>
+              <span
+                className={`block h-0.5 w-6 bg-gray-800 dark:bg-white rounded my-1 transition-all duration-300 ${open ? "opacity-0" : ""
+                  }`}
+              ></span>
+              <span
+                className={`block h-0.5 w-6 bg-gray-800 dark:bg-white rounded transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""
+                  }`}
+              ></span>
+            </button>
+          )}
+        </div>
 
         {/* Desktop links - Conditionally rendered based on isMobile state */}
         {!isMobile && (
@@ -68,9 +92,9 @@ function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="relative text-white font-medium transition-colors duration-200 px-2 py-1
-                  before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-400 before:transition-all before:duration-300
-                  hover:text-blue-400 hover:before:w-full"
+                className="relative text-gray-800 dark:text-white font-medium transition-colors duration-200 px-2 py-1
+                  before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-600 dark:before:bg-blue-400 before:transition-all before:duration-300
+                  hover:text-blue-600 dark:hover:text-blue-400 hover:before:w-full"
                 style={{ overflow: "hidden" }}
               >
                 {item.label}
@@ -83,7 +107,7 @@ function Navbar() {
       {/* Mobile menu with slide-down animation - Conditionally rendered based on isMobile state */}
       {isMobile && (
         <div
-          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-transparent transition-all duration-500 ease-in-out ${open
+          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md transition-all duration-500 ease-in-out ${open
             ? "max-h-96 opacity-100 translate-y-0"
             : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
             }`}
@@ -99,10 +123,10 @@ function Navbar() {
           <a
             key={item.href}
             href={item.href}
-            className="relative text-white font-medium transition-colors duration-200 px-4 py-3 rounded-lg
-              before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-400 before:transition-all before:duration-300
-              hover:text-blue-400 hover:before:w-full
-              bg-gray-800 bg-opacity-60 hover:bg-opacity-80 backdrop-blur-sm"
+            className="relative text-gray-800 dark:text-white font-medium transition-colors duration-200 px-4 py-3 rounded-lg
+              before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-blue-600 dark:before:bg-blue-400 before:transition-all before:duration-300
+              hover:text-blue-600 dark:hover:text-blue-400 hover:before:w-full
+              bg-gray-100 dark:bg-gray-800 bg-opacity-60 hover:bg-opacity-80 backdrop-blur-sm"
             style={{ overflow: "hidden" }}
             onClick={() => setOpen(false)}
           >

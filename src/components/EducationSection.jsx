@@ -35,7 +35,7 @@ function EducationSection() {
                      lg:max-w-xl
                      lg:flex-grow"
         >
-          <h2 className="text-4xl sm:text-6xl font-bold text-white mb-8 sm:mb-12 text-left">Education</h2>
+          <h2 className="text-4xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12 text-left">Education</h2>
           <div className="space-y-12 sm:space-y-16 w-full">
             {/* University College Cork Section */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
@@ -45,13 +45,13 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">University College Cork</h3>
-                <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
+                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 dark:text-blue-50 mb-2">University College Cork</h3>
+                <p className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-blue-200 mb-1">
                   BSc Computer Science 1.1
                 </p>
-                <p className="text-base sm:text-xl text-blue-300 mb-1">August 2024 - May 2028</p>
-                <p className="text-sm sm:text-lg text-blue-200 mb-1">Cork, Ireland</p>
-                <ul className="list-disc list-inside text-sm sm:text-lg text-blue-100 mt-2 space-y-1">
+                <p className="text-base sm:text-xl text-gray-700 dark:text-blue-300 mb-1">August 2024 - May 2028</p>
+                <p className="text-sm sm:text-lg text-gray-700 dark:text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-lg text-gray-800 dark:text-blue-100 mt-2 space-y-1">
                   <li>Academic Class Representative 2024</li>
                   <li>Netsoc member</li>
                   <li>Datasoc member</li>
@@ -69,13 +69,13 @@ function EducationSection() {
                 className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                <h3 className="text-2xl sm:text-4xl font-semibold text-blue-50 mb-2">North Monastery Secondary School</h3>
-                <p className="text-lg sm:text-2xl font-bold text-blue-200 mb-1">
+                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 dark:text-blue-50 mb-2">North Monastery Secondary School</h3>
+                <p className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-blue-200 mb-1">
                   Secondary School
                 </p>
-                <p className="text-base sm:text-xl text-blue-300 mb-1">September 2017 - May 2023</p>
-                <p className="text-sm sm:text-lg text-blue-200 mb-1">Cork, Ireland</p>
-                <ul className="list-disc list-inside text-sm sm:text-lg text-blue-100 mt-2 space-y-1">
+                <p className="text-base sm:text-xl text-gray-700 dark:text-blue-300 mb-1">September 2017 - May 2023</p>
+                <p className="text-sm sm:text-lg text-gray-700 dark:text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-lg text-gray-800 dark:text-blue-100 mt-2 space-y-1">
                   <li>Representative Of Jigsaw Mental Health</li>
                   <li>Student Council Member</li>
                 </ul>

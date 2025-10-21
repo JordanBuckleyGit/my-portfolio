@@ -15,30 +15,30 @@ function ContactSection() {
       <div className="flex-1 flex flex-col items-center md:items-start w-full text-center md:text-left">
         {/* Contact Me Heading */}
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-blue-300 mb-4 sm:mb-6 md:mb-8 flex items-center justify-center md:justify-start gap-3 sm:gap-4 md:gap-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-blue-600 dark:text-blue-300 mb-4 sm:mb-6 md:mb-8 flex items-center justify-center md:justify-start gap-3 sm:gap-4 md:gap-6">
           Contact Me{" "}
-          <FaPhoneAlt className="text-red-400 text-3xl sm:text-4xl md:text-5xl lg:text-7xl" />
+          <FaPhoneAlt className="text-red-500 dark:text-red-400 text-3xl sm:text-4xl md:text-5xl lg:text-7xl" />
         </h2>
 
         {/* Email Address */}
-        <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-white font-light mb-6 sm:mb-8 md:mb-10 break-words">
+        <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-gray-900 dark:text-white font-light mb-6 sm:mb-8 md:mb-10 break-words">
           jordanbuckleycork{" "}
-          <span className="text-blue-400 text-lg sm:text-xl md:text-2xl lg:text-3xl">(at)</span>{" "}
+          <span className="text-blue-600 dark:text-blue-400 text-lg sm:text-xl md:text-2xl lg:text-3xl">(at)</span>{" "}
           gmail{" "}
-          <span className="text-blue-400 text-lg sm:text-xl md:text-2xl lg:text-3xl">(dot)</span>{" "}
+          <span className="text-blue-600 dark:text-blue-400 text-lg sm:text-xl md:text-2xl lg:text-3xl">(dot)</span>{" "}
           com
         </p>
 
         {/* Social Icons */}
         <div className="flex space-x-4 sm:space-x-6 md:space-x-8 mt-6 sm:mt-8 md:mt-10">
           <a href="https://github.com/JordanBuckleyGit" target="_blank" rel="noopener noreferrer">
-            <FaGithub className="text-4xl sm:text-5xl text-white hover:text-blue-400 transition" />
+            <FaGithub className="text-4xl sm:text-5xl text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition" />
           </a>
           <a href="https://www.linkedin.com/in/jordan05/" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="text-4xl sm:text-5xl text-white hover:text-blue-400 transition" />
+            <FaLinkedin className="text-4xl sm:text-5xl text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition" />
           </a>
           <a href="mailto:jordanbuckleycork@gmail.com" target="_blank" rel="noopener noreferrer">
-            <FaEnvelope className="text-4xl sm:text-5xl text-white hover:text-blue-400 transition" />
+            <FaEnvelope className="text-4xl sm:text-5xl text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition" />
           </a>
         </div>
       </div>
