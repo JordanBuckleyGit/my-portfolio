@@ -5,6 +5,7 @@ import { useTheme } from "../context/ThemeContext";
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
 
   // Log theme state on every render
@@ -21,8 +22,20 @@ function Navbar() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="w-full left-0 z-50 transition-all duration-300 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md">
+    <nav className={`w-full left-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-md' : 'bg-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         <div className="flex items-center space-x-3">
           <img
@@ -107,7 +120,9 @@ function Navbar() {
       {/* Mobile menu with slide-down animation - Conditionally rendered based on isMobile state */}
       {isMobile && (
         <div
-          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md transition-all duration-500 ease-in-out ${open
+          className={`flex flex-col space-y-4 px-6 pt-2 pb-6 transition-all duration-500 ease-in-out ${
+            scrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md' : 'bg-gray-900/80 backdrop-blur-sm'
+          } ${open
             ? "max-h-96 opacity-100 translate-y-0"
             : "max-h-0 opacity-0 -translate-y-4 overflow-hidden"
             }`}
