@@ -1,20 +1,9 @@
 import { motion } from "framer-motion";
 import { FaBriefcase } from "react-icons/fa";
-import { useState, useEffect } from "react";
 import uccLogo from '../assets/ucc.png';
 import itLogo from '../assets/it.png'
 
 function ExperiencesSection() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 768);
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   const experiences = [
     {
       company: "UCC ACM Student Chapter",
