@@ -139,6 +139,7 @@ function Navbar() {
           {[
             { href: "#skills", label: "Skills" },
             { href: "#education", label: "Education" },
+            { href: "#experiences", label: "Experiences" },
             { href: "#achievements", label: "Achievements" },
             { href: "#volunteering", label: "Volunteering" },
             { href: "#projects", label: "Projects" },
