@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  /* Prevent horizontal scrolling from animations */
+  html {
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  #root {
+    overflow-x: hidden;
+  }
+  
   /* Light mode is default */
   :root:not(.dark) {
     background: linear-gradient(to bottom, #e0f2fe, #dbeafe, #f1f5f9);

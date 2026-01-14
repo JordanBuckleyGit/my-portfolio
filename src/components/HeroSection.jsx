@@ -10,14 +10,14 @@ function HeroSection() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.3 }}
-      className="w-screen flex flex-col md:flex-row items-center justify-between max-w-none mx-0 py-16 px-6 md:px-16"
+      className="w-full flex flex-col md:flex-row items-center justify-between py-12 md:py-16 px-4 sm:px-6 md:px-12 lg:px-16 gap-8 md:gap-12 overflow-hidden"
     >
       <div className="flex-1 flex flex-col items-start">
-        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight">
           Hi there, I'm Jordan{" "}
           <span className="inline-block animate-wave-hand">👋</span>
         </h1>
-        <p className="text-2xl md:text-3xl text-gray-700 dark:text-blue-100 mb-10 font-light max-w-2xl">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 dark:text-blue-100 mb-6 sm:mb-10 font-light max-w-2xl">
           I can only program while listening to music, and I love it!
         </p>
         <div className="flex space-x-4 mb-6">
@@ -31,16 +31,16 @@ function HeroSection() {
             <FaEnvelope className="text-4xl text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition" />
           </a>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6 w-full sm:w-auto">
           <a
             href="#contact"
-            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition transform hover:scale-105"
+            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold py-2 px-4 sm:px-6 rounded transition transform hover:scale-105 text-center text-sm sm:text-base"
           >
             CONTACT ME
           </a>
           <a
             href={cv}
-            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition transform hover:scale-105"
+            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-semibold py-2 px-4 sm:px-6 rounded transition transform hover:scale-105 text-center text-sm sm:text-base"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -48,11 +48,11 @@ function HeroSection() {
           </a>
         </div>
       </div>
-      <div className="flex-1 flex justify-center mt-10 md:mt-0">
+      <div className="flex-1 flex justify-center mt-10 md:mt-0 max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl overflow-hidden">
         <img
           src={`${import.meta.env.BASE_URL}programmer.svg`}
           alt="Programmer"
-          className="w-90 h-90 object-contain animate-bounce-illustration"
+          className="w-full h-auto max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg object-contain animate-bounce-illustration"
         />
       </div>
     </motion.section>

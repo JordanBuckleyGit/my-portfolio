@@ -1,9 +1,20 @@
 import { motion } from "framer-motion";
 import { FaBriefcase } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import uccLogo from '../assets/ucc.png';
 import itLogo from '../assets/it.png'
 
 function ExperiencesSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const experiences = [
     {
       company: "UCC ACM Student Chapter",
@@ -57,11 +68,7 @@ function ExperiencesSection() {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0, x: 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+    <section
       id="experiences"
       className="w-full max-w-7xl mx-auto p-4 sm:p-8 md:p-10 mb-12"
     >
@@ -144,7 +151,7 @@ function ExperiencesSection() {
           </motion.div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
 
