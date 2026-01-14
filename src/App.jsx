@@ -28,9 +28,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // --- AGGRESSIVE SCROLL FIX ---
-  // Use useLayoutEffect if useEffect still fails for initial render issues.
-  // useLayoutEffect runs synchronously after all DOM mutations but before browser paints.
   useEffect(() => { // You can try changing this to useLayoutEffect if needed.
     // Ensure scroll restoration is manual
     if ('scrollRestoration' in window.history) {

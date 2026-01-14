@@ -57,7 +57,11 @@ function ExperiencesSection() {
   ];
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
       id="experiences"
       className="w-full max-w-7xl mx-auto p-4 sm:p-8 md:p-10 mb-12"
     >
@@ -140,7 +144,7 @@ function ExperiencesSection() {
           </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 
