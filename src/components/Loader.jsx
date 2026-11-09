@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Animation for the logo
 const logoVariants = {
@@ -18,13 +18,13 @@ const logoVariants = {
 
 function Loader() {
   return (
-    <AnimatePresence>
+    <>
       <motion.div
-        className="fixed inset-0 flex flex-col items-center justify-center bg-[#181c24] z-50"
+        className="fixed inset-0 flex flex-col items-center justify-center bg-slate-100 dark:bg-[#181c24] text-gray-900 dark:text-white z-[60]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5 }}
       >
         {/* Modern Animated Monogram Logo */}
         <motion.svg
@@ -52,7 +52,7 @@ function Loader() {
             x="50%"
             y="58%"
             textAnchor="middle"
-            fill="#fff"
+            fill="currentColor"
             fontSize="3.2rem"
             fontWeight="bold"
             fontFamily="'Montserrat', 'Segoe UI', Arial, sans-serif"
@@ -70,11 +70,11 @@ function Loader() {
           </defs>
         </motion.svg>
         {/* Signature-style name only */}
-        <span className="text-white text-3xl font-signature tracking-wider select-none">
+        <span className="text-2xl sm:text-3xl font-light tracking-wider select-none">
           Jordan Buckley
         </span>
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 }
 

@@ -7,7 +7,6 @@ export function ThemeProvider({ children }) {
     // Check localStorage or default to dark
     const saved = localStorage.getItem('theme');
     const initialTheme = saved ? saved === 'dark' : true;
-    console.log('Initial theme from localStorage:', saved, 'isDark:', initialTheme);
     
     // Set the class immediately on mount
     if (initialTheme) {
@@ -22,7 +21,6 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // Update localStorage and document class when theme changes
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    console.log('Theme changed to:', isDark ? 'dark' : 'light');
     if (isDark) {
       document.documentElement.classList.add('dark');
     } else {
@@ -31,7 +29,6 @@ export function ThemeProvider({ children }) {
   }, [isDark]);
 
   const toggleTheme = () => {
-    console.log('Toggle theme clicked, current isDark:', isDark);
     setIsDark(!isDark);
   };
 

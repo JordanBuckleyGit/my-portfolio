@@ -11,16 +11,16 @@ import googleLogo from "../assets/google.png";
 function Modal({ open, onClose, imgSrc, imgAlt }) {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-      <div className="bg-gray-900 rounded-xl shadow-2xl p-6 relative flex flex-col items-center">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
+      <div className="bg-gray-900 rounded-2xl shadow-2xl p-3 sm:p-4 relative flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-white text-2xl font-bold hover:text-yellow-400"
+          className="absolute -top-3 -right-3 w-9 h-9 rounded-full bg-gray-800 shadow-lg flex items-center justify-center text-white text-2xl font-bold hover:text-yellow-400"
           aria-label="Close"
         >
           ×
         </button>
-        <img src={imgSrc} alt={imgAlt} className="max-w-[80vw] max-h-[70vh] rounded-lg" />
+        <img src={imgSrc} alt={imgAlt} className="max-w-full max-h-[80vh] object-contain rounded-lg" />
       </div>
     </div>
   );
@@ -31,14 +31,14 @@ function AchievementsSection() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, x: -100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="achievements"
-      className="w-full max-w-[120rem] mx-auto p-4 sm:p-8 md:p-10 mb-12"
+      className="w-full"
     >
-      <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-12 flex items-center gap-3 justify-center">
+      <h2 className="section-title">
         <FaTrophy className="text-yellow-500 dark:text-yellow-400" /> Achievements
       </h2>
       <Modal
@@ -47,12 +47,11 @@ function AchievementsSection() {
         imgSrc={modal.imgSrc}
         imgAlt={modal.imgAlt}
       />
-      <div className="flex items-end justify-center gap-6 w-full flex-wrap flex-col sm:flex-row md:flex-col lg:flex-row md:gap-y-10">
+      <div className="grid md:grid-cols-3 items-end gap-6 lg:gap-8 pt-8 max-w-md md:max-w-none mx-auto">
         {/* 2nd Place - Microsoft Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="w-full h-full flex transition-transform duration-300 hover:-translate-y-1">
           <div
-            className="bg-blue-200 dark:bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
-            tabIndex={0}
+            className="bg-blue-200 dark:bg-blue-950/60 rounded-2xl shadow-lg flex flex-col items-center px-6 py-8 w-full"
           >
             <img
               src={microsoft}
@@ -66,17 +65,16 @@ function AchievementsSection() {
             </p>
             <button
               onClick={() => setModal({ open: true, imgSrc: team, imgAlt: "Microsoft Hackathon" })}
-              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-500 text-white font-semibold py-2 px-6 rounded transition"
+              className="btn mt-auto"
             >
               View
             </button>
           </div>
         </div>
         {/* 1st Place - Google Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="order-first md:order-none w-full h-full flex transition-transform duration-300 hover:-translate-y-1">
           <div
-            className="bg-blue-300 dark:bg-blue-950/80 rounded-xl shadow-2xl flex flex-col items-center px-8 py-10 border-4 border-yellow-400 relative w-full h-[340px] cursor-pointer"
-            tabIndex={0}
+            className="bg-blue-300 dark:bg-blue-950/80 rounded-2xl shadow-2xl flex flex-col items-center px-6 pt-12 pb-8 md:pb-12 border-4 border-yellow-400 relative w-full"
           >
             <img
               src={googleLogo}
@@ -90,7 +88,7 @@ function AchievementsSection() {
             </p>
             <button
               onClick={() => setModal({ open: true, imgSrc: googleWin, imgAlt: "Google Hackathon" })}
-              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-500 text-white font-semibold py-2 px-6 rounded transition"
+              className="btn mt-auto"
             >
               View
             </button>
@@ -98,10 +96,9 @@ function AchievementsSection() {
           </div>
         </div>
         {/* 3rd Place - ACM Hackathon */}
-        <div className="flex flex-col items-center justify-end group flex-shrink min-w-0 w-full sm:w-1/2 md:w-full lg:w-1/3 max-w-[420px] mx-auto transition-transform duration-300 group-hover:scale-105 group-focus:scale-105">
+        <div className="w-full h-full flex transition-transform duration-300 hover:-translate-y-1">
           <div
-            className="bg-blue-200 dark:bg-blue-950/60 rounded-xl shadow-lg flex flex-col items-center px-8 py-10 w-full h-[340px] cursor-pointer"
-            tabIndex={0}
+            className="bg-blue-200 dark:bg-blue-950/60 rounded-2xl shadow-lg flex flex-col items-center px-6 py-8 w-full"
           >
             <img
               src={acmLogo}
@@ -115,7 +112,7 @@ function AchievementsSection() {
             </p>
             <button
               onClick={() => setModal({ open: true, imgSrc: acmTeam, imgAlt: "ACM Hackathon" })}
-              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-500 text-white font-semibold py-2 px-6 rounded transition"
+              className="btn mt-auto"
             >
               View
             </button>

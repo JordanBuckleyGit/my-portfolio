@@ -65,21 +65,21 @@ function SkillsSection() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, x: 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="skills"
-      className="w-full max-w-[2500px] mx-auto p-4 sm:p-6 md:p-8 mb-8 flex flex-col items-center"
+      className="w-full flex flex-col items-center"
     >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Skills</h2>
-      <div className="flex items-center w-full justify-center space-x-2 sm:space-x-4 md:space-x-6 mb-4">
+      <h2 className="section-title">Skills</h2>
+      <div className="flex items-center w-full justify-center gap-2 sm:gap-4 mb-8">
         {/* Custom Arrow Button - Left */}
         <button
           onClick={prev}
           className="rounded-full bg-blue-200 dark:bg-blue-900/60 hover:bg-blue-300 dark:hover:bg-blue-700/80 
                      text-blue-800 dark:text-blue-200 hover:text-blue-900 dark:hover:text-white 
-                     shadow-lg w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center 
+                     shadow-lg shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center 
                      text-2xl sm:text-3xl md:text-4xl transition-all duration-200 active:scale-90 focus:outline-none"
           aria-label="Previous"
         >
@@ -89,7 +89,7 @@ function SkillsSection() {
         </button>
         {/* Animated Skills List */}
         <div
-          className={`flex flex-1 justify-center space-x-4 sm:space-x-8 md:space-x-12 transition-transform duration-500 ${
+          className={`flex flex-1 min-w-0 justify-center gap-3 sm:gap-5 transition-transform duration-500 ${
             direction === 1
               ? "animate-slide-left"
               : direction === -1
@@ -99,13 +99,13 @@ function SkillsSection() {
           onAnimationEnd={() => setDirection(0)}
         >
           {visibleSkills.map((skill) => (
-            <div key={skill.name} className="flex flex-col items-center min-w-[80px] sm:min-w-[100px] md:min-w-[120px]">
+            <div key={skill.name} className="flex flex-1 max-w-[14rem] flex-col items-center justify-center gap-4 rounded-2xl bg-white/60 dark:bg-white/5 border border-black/5 dark:border-white/10 p-6 sm:p-8 shadow-sm">
               <img
                 src={skill.logo}
                 alt={skill.name}
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 mb-2 transition-all duration-300 drop-shadow-lg"
+                className="w-20 h-20 md:w-24 md:h-24 object-contain drop-shadow-lg"
               />
-              <span className="text-gray-800 dark:text-blue-100 text-base sm:text-lg md:text-xl font-semibold text-center">{skill.name}</span>
+              <span className="text-gray-800 dark:text-blue-100 text-base md:text-lg font-semibold text-center">{skill.name}</span>
             </div>
           ))}
         </div>
@@ -114,7 +114,7 @@ function SkillsSection() {
           onClick={next}
           className="rounded-full bg-blue-200 dark:bg-blue-900/60 hover:bg-blue-300 dark:hover:bg-blue-700/80 
                      text-blue-800 dark:text-blue-200 hover:text-blue-900 dark:hover:text-white 
-                     shadow-lg w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center 
+                     shadow-lg shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center 
                      text-2xl sm:text-3xl md:text-4xl transition-all duration-200 active:scale-90 focus:outline-none"
           aria-label="Next"
         >

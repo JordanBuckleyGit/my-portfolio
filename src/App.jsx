@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowUp } from "react-icons/fa";
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -24,7 +24,7 @@ function App() {
   const lastScrollY = useRef(0);
   // Loader effect
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1500);
+    const timer = setTimeout(() => setLoading(false), 900);
     return () => clearTimeout(timer);
   }, []);
 
@@ -79,30 +79,21 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (loading) return <Loader />;
-
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="min-h-screen flex flex-col 
+    <div
+      className="min-h-screen flex flex-col
                  bg-gradient-to-b from-sky-100 via-blue-50 to-slate-100
                  dark:from-blue-900 dark:via-gray-900 dark:to-gray-800
                  transition-colors duration-500"
     >
+       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
        <div
-         style={{
-           transition: "transform 0.3s",
-           transform: showNavbar ? "translateY(0)" : "translateY(-100%)",
-           position: "sticky",
-           top: 0,
-           zIndex: 50,
-         }}
+         className="fixed inset-x-0 top-0 z-50 transition-transform duration-300"
+         style={{ transform: showNavbar ? "translateY(0)" : "translateY(-100%)" }}
        >
          <Navbar />
        </div>
-       <main className="flex-1 flex flex-col items-center px-4 py-12 space-y-16">
+       <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 space-y-24 sm:space-y-32">
          <motion.div
            variants={sectionVariants}
            initial="hidden"
@@ -114,7 +105,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
          >
            <SkillsSection />
          </motion.div>
@@ -123,7 +114,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
            className="self-start w-full"
          >
            <EducationSection />
@@ -132,7 +123,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
            className="self-start w-full"
          >
            <ExperiencesSection />
@@ -141,7 +132,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
            className="self-start w-full"
          >
            <AchievementsSection />
@@ -150,7 +141,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
          >
            <VolunteeringSection />
          </motion.div>
@@ -158,7 +149,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
            className="self-start w-full"
          >
            <ProjectsSection />
@@ -167,7 +158,7 @@ function App() {
            variants={sectionVariants}
            initial="hidden"
            whileInView="visible"
-           viewport={{ once: true, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.1 }}
            className="self-start w-full"
          >
            <ContactSection />
@@ -176,13 +167,13 @@ function App() {
     {showTop && (
       <button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 bg-blue-700 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-400 text-white p-3 rounded-full shadow-lg transition-all duration-200"
+        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 sm:right-6 z-40 bg-blue-700 hover:bg-blue-500 dark:bg-blue-600 dark:hover:bg-blue-400 text-white p-3 rounded-full shadow-lg transition-all duration-200"
         aria-label="Back to top"
       >
-        <FaArrowUp className="text-2xl" />
+        <FaArrowUp className="text-xl" />
       </button>
     )}
-    </motion.div>
+    </div>
   );
 }
 

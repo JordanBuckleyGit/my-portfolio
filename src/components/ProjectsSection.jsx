@@ -44,38 +44,33 @@ const projectsData = [
 function ProjectsSection() {
   const [page, setPage] = useState(0);
   const containerRef = useRef(null);
-  const throttlingRef = useRef(false);
+  const wheel = useRef({ last: 0, delta: 0, lockedUntil: 0 });
   const startTouchX = useRef(0);
-
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    const throttleMs = 500;
     const totalProjects = projectsData.length;
 
     const onWheel = (e) => {
+      // Laptop screens and above only: on smaller screens it traps normal page scrolling
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
       e.preventDefault();
-      if (throttlingRef.current) return;
 
-      const isVerticalScroll = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-      if (isVerticalScroll) {
-        let newPage = page;
-        if (e.deltaY > 0) {
-          newPage = Math.min(page + 1, totalProjects - 1);
-        } else if (e.deltaY < 0) {
-          newPage = Math.max(page - 1, 0);
-        }
+      const now = performance.now();
+      const delta = Math.abs(e.deltaY);
+      const w = wheel.current;
+      // A new scroll = a pause in events, or a jump in strength (momentum only ever fades)
+      const newGesture = now - w.last > 150 || (delta > w.delta * 1.5 && delta > 15);
+      w.last = now;
+      w.delta = delta;
+      if (!newGesture || now < w.lockedUntil) return;
 
-        if (newPage !== page) {
-          setPage(newPage);
-          throttlingRef.current = true;
-          setTimeout(() => {
-            throttlingRef.current = false;
-          }, throttleMs);
-        }
-      }
+      w.lockedUntil = now + 200; // ignore the ramp-up of the same scroll
+      const dir = Math.sign(e.deltaY);
+      setPage((p) => Math.min(Math.max(p + dir, 0), totalProjects - 1));
     };
 
     el.addEventListener("wheel", onWheel, { passive: false });
@@ -83,7 +78,7 @@ function ProjectsSection() {
     return () => {
       el.removeEventListener("wheel", onWheel);
     };
-  }, [page]);
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -138,58 +133,58 @@ function ProjectsSection() {
 
   return (
     <motion.section
-      initial={{ opacity: 0, x: 100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="projects"
-      className="w-full py-16 mb-12 select-none"
+      className="w-full select-none"
     >
-      <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-12 text-center tracking-tight drop-shadow-lg">
-        <FaGithub className="inline-block mr-3 text-4xl align-middle text-gray-900 dark:text-white" />
+      <h2 className="section-title">
+        <FaGithub className="text-gray-900 dark:text-white" />
         Projects
       </h2>
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden h-72 sm:h-80 md:h-96"
+        className="relative w-full overflow-hidden focus:outline-none"
         tabIndex={0}
       >
         <div
-          className="flex h-full transition-transform duration-500"
+          className="flex transition-transform duration-500"
           style={{ transform: `translateX(-${page * 100}%)` }}
         >
           {projectsData.map((project, i) => (
             <div
               key={project.name}
-              className="flex w-full h-full items-center justify-center flex-shrink-0 px-2"
+              className="flex w-full items-stretch justify-center flex-shrink-0 px-2 py-6"
               style={{ minWidth: "100%" }}
             >
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full max-w-xs sm:max-w-md lg:max-w-xl xl:max-w-3xl 2xl:max-w-4xl
+                className="group w-full max-w-4xl
                            bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/90 dark:to-blue-950/90 
-                           rounded-2xl shadow-2xl p-6 sm:p-10
-                           min-h-[220px] flex flex-col justify-center mx-auto border border-blue-300 dark:border-blue-800
-                           hover:border-blue-500 dark:hover:border-blue-400 hover:scale-[1.025] transition-all duration-300"
+                           rounded-2xl shadow-lg p-6 sm:p-10
+                           min-h-[260px] sm:min-h-[320px] flex flex-col justify-center mx-auto border border-blue-300 dark:border-blue-800
+                           hover:border-blue-500 dark:hover:border-blue-400 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex items-center mb-3">
-                  <FaGithub className="text-blue-600 dark:text-blue-400 text-2xl mr-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition" />
-                  <h3 className="font-bold text-2xl text-gray-900 dark:text-blue-100">{project.name}</h3>
+                <div className="flex items-start gap-3 mb-4">
+                  <FaGithub className="text-blue-600 dark:text-blue-400 text-2xl sm:text-3xl shrink-0 mt-1 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition" />
+                  <h3 className="font-bold text-xl sm:text-3xl text-gray-900 dark:text-blue-100">{project.name}</h3>
                 </div>
-                <p className="text-gray-800 dark:text-blue-300 text-lg">{project.desc}</p>
+                <p className="text-gray-800 dark:text-blue-300 text-base sm:text-xl leading-relaxed">{project.desc}</p>
               </a>
             </div>
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex flex-wrap justify-center mt-4 gap-3">
         {projectsData.map((_, index) => (
           <button
             key={index}
             className={`w-3 h-3 rounded-full transition ${
-              page === index ? "bg-blue-300 scale-125" : "bg-blue-700"
+              page === index ? "bg-blue-600 dark:bg-blue-300 scale-125" : "bg-blue-300 dark:bg-blue-800"
             }`}
             onClick={() => setPage(index)}
             aria-label={`Go to project ${index + 1}`}

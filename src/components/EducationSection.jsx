@@ -1,57 +1,40 @@
-import { useEffect, useState } from "react";
 import uccLogo from '../assets/ucc.png';
 import northmonLogo from '../assets/northmon.png';
 import { motion } from "framer-motion";
 
 function EducationSection() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 1024);
-    }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <motion.section
-      initial={{ opacity: 0, x: -100 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="education"
-      className="flex flex-col lg:flex-row w-full items-start lg:items-stretch gap-8 lg:gap-16 px-4"
+      className="w-full"
     >
-      <div className={`flex flex-col ${isMobile ? "items-center" : "lg:flex-row items-start lg:items-stretch"} w-full relative`}>
+      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 w-full">
 
         {/* Education Content Block */}
         <div
-          className="flex flex-col items-start w-full
-                     max-w-md
-                     sm:max-w-sm
-                     md:max-w-3xl
-                     lg:max-w-xl
-                     lg:flex-grow"
+          className="flex flex-col w-full lg:flex-1"
         >
-          <h2 className="text-4xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-12 text-left">Education</h2>
-          <div className="space-y-12 sm:space-y-16 w-full">
+          <h2 className="section-title lg:justify-start lg:text-left">Education</h2>
+          <div className="space-y-8 w-full">
             {/* University College Cork Section */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 text-left">
               <img
                 src={uccLogo}
                 alt="University College Cork Logo"
-                className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
+                className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 object-contain p-1 rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 dark:text-blue-50 mb-2">University College Cork</h3>
-                <p className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-blue-200 mb-1">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-blue-50 mb-2">University College Cork</h3>
+                <p className="text-base sm:text-xl font-bold text-gray-800 dark:text-blue-200 mb-1">
                   BSc Computer Science 1.1
                 </p>
-                <p className="text-base sm:text-xl text-gray-700 dark:text-blue-300 mb-1">August 2024 - May 2028</p>
-                <p className="text-sm sm:text-lg text-gray-700 dark:text-blue-200 mb-1">Cork, Ireland</p>
-                <ul className="list-disc list-inside text-sm sm:text-lg text-gray-800 dark:text-blue-100 mt-2 space-y-1">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-blue-300 mb-1">August 2024 - May 2028</p>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 dark:text-blue-100 mt-2 space-y-1">
                   <li>Academic Class Representative 2024</li>
                   <li>Netsoc member</li>
                   <li>Datasoc member</li>
@@ -59,38 +42,35 @@ function EducationSection() {
                 </ul>
               </div>
             </div>
-            <hr className="border-gray-600 my-6 sm:my-8" />
+            <hr className="border-gray-300 dark:border-gray-700" />
 
             {/* North Monastery Secondary School Section */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 text-left">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 text-left">
               <img
                 src={northmonLogo}
                 alt="North Monastery Secondary School Logo"
-                className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-xl shadow-lg bg-blue-950/40"
+                className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 object-contain p-1 rounded-xl shadow-lg bg-blue-950/40"
               />
               <div>
-                <h3 className="text-2xl sm:text-4xl font-semibold text-gray-900 dark:text-blue-50 mb-2">North Monastery Secondary School</h3>
-                <p className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-blue-200 mb-1">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-blue-50 mb-2">North Monastery Secondary School</h3>
+                <p className="text-base sm:text-xl font-bold text-gray-800 dark:text-blue-200 mb-1">
                   Secondary School
                 </p>
-                <p className="text-base sm:text-xl text-gray-700 dark:text-blue-300 mb-1">September 2017 - May 2023</p>
-                <p className="text-sm sm:text-lg text-gray-700 dark:text-blue-200 mb-1">Cork, Ireland</p>
-                <ul className="list-disc list-inside text-sm sm:text-lg text-gray-800 dark:text-blue-100 mt-2 space-y-1">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-blue-300 mb-1">September 2017 - May 2023</p>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-blue-200 mb-1">Cork, Ireland</p>
+                <ul className="list-disc list-inside text-sm sm:text-base text-gray-800 dark:text-blue-100 mt-2 space-y-1">
                   <li>Representative Of Jigsaw Mental Health</li>
                   <li>Student Council Member</li>
                 </ul>
               </div>
             </div>
-            <hr className="border-gray-600 my-6 sm:my-8" />
+            <hr className="border-gray-300 dark:border-gray-700" />
           </div>
         </div>
 
         {/* SVG Container */}
         <motion.div
-          className="flex justify-center items-center w-full mt-8 lg:mt-0 lg:ml-8
-                     lg:w-1/3 xl:w-1/4 2xl:w-1/5
-                     max-w-[12rem] sm:max-w-[15rem] md:max-w-[18rem] lg:max-w-[20rem] xl:max-w-[22rem] 2xl:max-w-[24rem]
-                     flex-none flex-shrink-0"
+          className="w-48 sm:w-60 lg:w-80 shrink-0"
           animate={{ rotate: [-10, 10, -10] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >

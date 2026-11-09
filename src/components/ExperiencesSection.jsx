@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaBriefcase } from "react-icons/fa";
+import { FaBriefcase, FaApple } from "react-icons/fa";
 import uccLogo from '../assets/ucc.png';
 import itLogo from '../assets/it.png'
 
 function ExperiencesSection() {
+  const [revealed, setRevealed] = useState(false);
   const experiences = [
     {
       company: "UCC ACM Student Chapter",
@@ -61,15 +63,44 @@ function ExperiencesSection() {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       id="experiences"
-      className="w-full max-w-7xl mx-auto p-4 sm:p-8 md:p-10 mb-12"
+      className="w-full"
     >
-      <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-12 flex items-center gap-3 justify-center">
+      <h2 className="section-title">
         <FaBriefcase className="text-blue-500 dark:text-blue-400" /> Experiences
       </h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      {/* Sneak peek: upcoming Apple internship (frosted until hovered/tapped) */}
+      <button
+        type="button"
+        onClick={() => setRevealed((r) => !r)}
+        aria-expanded={revealed}
+        className="group relative w-full mb-6 overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-left shadow-lg"
+      >
+        <div className="flex flex-col sm:flex-row items-center gap-6 p-6 sm:p-8">
+          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-white shadow-md">
+            <FaApple className="text-5xl text-black" />
+          </div>
+          <div className="text-center sm:text-left">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300 mb-2">Coming soon</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">Apple</h3>
+            <p className="text-lg font-semibold text-blue-300">Software Engineering Intern</p>
+            <p className="text-sm text-gray-400 mt-1">Spring – Summer 2027 · Cork, Ireland</p>
+          </div>
+        </div>
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gray-900/60 backdrop-blur-xl transition-opacity duration-500 [@media(hover:hover)]:group-hover:opacity-0 ${
+            revealed ? "opacity-0" : ""
+          }`}
+        >
+          <FaApple className="text-4xl text-white" />
+          <p className="text-lg sm:text-xl font-semibold text-white">Something new is coming…</p>
+          <p className="text-sm text-gray-300">Hover or tap for a sneak peek</p>
+        </div>
+      </button>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {experiences.map((exp, index) => (
           <motion.div
             key={index}
@@ -77,7 +108,8 @@ function ExperiencesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className={`${exp.bgColor} rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-gray-200 dark:border-gray-700 hover:scale-[1.02]`}
+            whileHover={{ y: -4 }}
+            className={`${exp.bgColor} flex flex-col rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-black/5 dark:border-white/10`}
           >
             {/* Header with gradient */}
             <div className={`bg-gradient-to-r ${exp.color} p-6 flex items-center justify-center`}>
@@ -89,8 +121,8 @@ function ExperiencesSection() {
             </div>
 
             {/* Content */}
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="p-6 flex flex-col flex-1">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {exp.company}
               </h3>
               <p className="text-lg font-semibold text-gray-800 dark:text-blue-300 mb-2">
@@ -135,7 +167,7 @@ function ExperiencesSection() {
                   href={exp.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold text-sm transition"
+                  className="mt-auto inline-block text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold text-sm transition"
                 >
                   View Project →
                 </a>
